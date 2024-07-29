@@ -63,6 +63,14 @@ export default function Index() {
           >
             YOUTUBE
           </a>
+          <a
+            className="border border-blue-950 p-3 hover:bg-blue-600 rounded-xl text-white"
+            target="_blank"
+            href="https://x.com/TheDeskThing"
+            rel="noreferrer"
+          >
+            X.COM
+          </a>
 
       </div>
       
