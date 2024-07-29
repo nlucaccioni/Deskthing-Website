@@ -42,7 +42,7 @@ export default function Index() {
           <a
             className="border border-slate-300 p-3 hover:bg-slate-300 rounded-xl text-white"
             target="_blank"
-            href="https://www.reddit.com/r/DeskThing/"
+            href="https://trello.com/b/6v0paxqV/deskthing"
             rel="noreferrer"
           >
             TRELLO
