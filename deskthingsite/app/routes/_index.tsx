@@ -26,7 +26,7 @@ export default function Index() {
           <a
             className="border border-indigo-600 p-3 hover:bg-indigo-600 rounded-xl text-white"
             target="_blank"
-            href="https://www.reddit.com/r/DeskThing/"
+            href="https://discord.gg/qWbSwzWJ4e"
             rel="noreferrer"
           >
             DISCORD
@@ -34,7 +34,7 @@ export default function Index() {
           <a
             className="border border-zinc-600 p-3 hover:bg-zinc-600 rounded-xl text-white"
             target="_blank"
-            href="https://www.reddit.com/r/DeskThing/"
+            href="https://github.com/ItsRiprod/DeskThing"
             rel="noreferrer"
           >
             GITHUB
@@ -50,7 +50,7 @@ export default function Index() {
           <a
             className="border border-fuchsia-600 p-3 hover:bg-fuchsia-600 rounded-xl text-white"
             target="_blank"
-            href="https://www.reddit.com/r/DeskThing/"
+            href="https://buymeacoffee.com/riprod"
             rel="noreferrer"
           >
             SUPPORT
@@ -58,7 +58,7 @@ export default function Index() {
           <a
             className="border border-red-600 p-3 hover:bg-red-600 rounded-xl text-white"
             target="_blank"
-            href="https://www.reddit.com/r/DeskThing/"
+            href="https://www.youtube.com/@deskthing"
             rel="noreferrer"
           >
             YOUTUBE
