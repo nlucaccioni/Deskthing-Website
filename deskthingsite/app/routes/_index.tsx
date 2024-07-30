@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useEffect, useState } from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,6 +9,29 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const [setupFiles, setSetupFiles] = useState<any[]>([])
+  
+  useEffect(() => {
+    const fetchReleases = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/repos/itsriprod/deskthing/releases"
+        );
+        const data = await response.json();
+        const files = []
+        for (const release of data) {
+          const matchingAssets = release.assets.filter((asset) => asset.name.includes("-setup"));
+          files.push(...matchingAssets);
+        }
+        setSetupFiles(files)
+      } catch(error) {
+        console.error("Error fetching releaes", error);
+      }
+    }
+
+    fetchReleases();
+  }, [])
+
   return (
     <div className="font-geist p-4 w-screen h-screen bg-slate-800 flex flex-col items-center justify-center">
       <div>
@@ -73,6 +97,21 @@ export default function Index() {
           </a>
 
       </div>
+      <h1 className="text-white font-geistMono pt-14 text-2xl">Downloads</h1>
+        <div className="flex-col flex max-h-96 overflow-y-scroll pt-5 gap-4">
+          {setupFiles.map((file) => (
+            file &&
+              <a
+                key={file.id}
+                className="border border-green-600 p-3 hover:bg-green-600 rounded-xl text-white"
+                target="_blank"
+                href={file.browser_download_url}
+                rel="noreferrer"
+              >
+                {file.name}
+              </a>          
+          ))}
+        </div>
       
     </div>
   );
