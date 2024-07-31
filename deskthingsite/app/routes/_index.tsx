@@ -47,6 +47,7 @@ export default function Index() {
           >
             REDDIT
           </a>
+          <div className="relative group">
           <a
             className="border border-indigo-600 p-3 hover:bg-indigo-600 rounded-xl text-white"
             target="_blank"
@@ -55,6 +56,25 @@ export default function Index() {
           >
             DISCORD
           </a>
+          <div className="absolute hidden group-hover:block border-indigo-600 border-b border-l border-r text-white rounded-lg mt-1 w-full">
+            <a
+              className="block text-center py-2 rounded-lg hover:bg-indigo-500"
+              target="_blank"
+              href="https://discord.gg/carthing"
+              rel="noreferrer"
+            >
+              Car Thing Hax
+            </a>
+            <a
+              className="block text-center py-2 rounded-lg hover:bg-indigo-500"
+              target="_blank"
+              href="https://discord.gg/qWbSwzWJ4e"
+              rel="noreferrer"
+            >
+              Deskthing
+            </a>
+          </div>
+        </div>
           <a
             className="border border-zinc-600 p-3 hover:bg-zinc-600 rounded-xl text-white"
             target="_blank"
@@ -98,8 +118,8 @@ export default function Index() {
 
       </div>
       <h1 className="text-white font-geistMono pt-14 text-2xl">Downloads</h1>
-        <div className="flex-col flex max-h-96 overflow-y-scroll pt-5 gap-4">
-          {setupFiles.map((file) => (
+        <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
+          {setupFiles.length > 0 ? setupFiles.map((file) => (
             file &&
               <a
                 key={file.id}
@@ -110,7 +130,12 @@ export default function Index() {
               >
                 {file.name}
               </a>          
-          ))}
+          )) : (
+            <div className="flex gap-3 px-5">
+              <div className="animate-spin bg-green-400 w-5 h-5"></div>
+              <p className="text-white font-Wingding">Loading Releases</p>
+            </div>
+          )}
         </div>
       
     </div>
