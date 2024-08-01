@@ -10,7 +10,29 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const [setupFiles, setSetupFiles] = useState<any[]>([])
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState("");
   
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      setPosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  const handleMouseEnter = (text) => {
+    setHovered(text);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered("");
+  };
+
   useEffect(() => {
     const fetchReleases = async () => {
       try {
@@ -44,6 +66,8 @@ export default function Index() {
             target="_blank"
             href="https://www.reddit.com/r/DeskThing/"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Go To Reddit")}
+          onMouseLeave={handleMouseLeave}
           >
             REDDIT
           </a>
@@ -53,6 +77,8 @@ export default function Index() {
             target="_blank"
             href="https://discord.gg/qWbSwzWJ4e"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Join our discord!")}
+          onMouseLeave={handleMouseLeave}
           >
             DISCORD
           </a>
@@ -62,6 +88,8 @@ export default function Index() {
               target="_blank"
               href="https://discord.gg/carthing"
               rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Official Car Thing Hax Server")}
+          onMouseLeave={handleMouseLeave}
             >
               Car Thing Hax
             </a>
@@ -70,6 +98,8 @@ export default function Index() {
               target="_blank"
               href="https://discord.gg/qWbSwzWJ4e"
               rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Official Deskthing Server")}
+          onMouseLeave={handleMouseLeave}
             >
               Deskthing
             </a>
@@ -80,6 +110,8 @@ export default function Index() {
             target="_blank"
             href="https://github.com/ItsRiprod/DeskThing"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Source code")}
+          onMouseLeave={handleMouseLeave}
           >
             GITHUB
           </a>
@@ -88,6 +120,8 @@ export default function Index() {
             target="_blank"
             href="https://trello.com/b/6v0paxqV/deskthing"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("TODO Lists and progress updates")}
+          onMouseLeave={handleMouseLeave}
           >
             TRELLO
           </a>
@@ -96,6 +130,8 @@ export default function Index() {
             target="_blank"
             href="https://buymeacoffee.com/riprod"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Buy me a coffee :P")}
+          onMouseLeave={handleMouseLeave}
           >
             SUPPORT
           </a>
@@ -104,6 +140,8 @@ export default function Index() {
             target="_blank"
             href="https://www.youtube.com/@deskthing"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Deskthing Youtube Channel")}
+          onMouseLeave={handleMouseLeave}
           >
             YOUTUBE
           </a>
@@ -112,8 +150,10 @@ export default function Index() {
             target="_blank"
             href="https://x.com/TheDeskThing"
             rel="noreferrer"
+          onMouseEnter={() => handleMouseEnter("Deskthing Twitter Account")}
+          onMouseLeave={handleMouseLeave}
           >
-            X.COM
+            TWITTER
           </a>
 
       </div>
@@ -137,7 +177,14 @@ export default function Index() {
             </div>
           )}
         </div>
-      
+        <div
+        className={`fixed pointer-events-none p-2 bg-white text-black rounded-md shadow-lg transition-transform duration-200 transform -translate-x-1/2 -translate-y-full ${
+          hovered ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      >
+        {hovered.length > 1 ? (hovered) : <div>H</div>}
+      </div>
     </div>
   );
 }
