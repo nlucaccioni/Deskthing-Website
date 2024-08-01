@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
+import { IconLogoLoading } from "../assets/icons";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,47 +11,21 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const [setupFiles, setSetupFiles] = useState<any[]>([])
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState("");
-  
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  const handleMouseEnter = (text) => {
-    setHovered(text);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered("");
-  };
 
   useEffect(() => {
     const fetchReleases = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/itsriprod/deskthing/releases"
+          "https://api.github.com/repos/itsriprod/deskthing/releases/latest"
         );
         const data = await response.json();
-        const files = []
-        for (const release of data) {
-          const matchingAssets = release.assets.filter((asset) => asset.name.includes("-setup"));
-          files.push(...matchingAssets);
-        }
-        setSetupFiles(files)
+        const files = data.assets.filter((asset) => asset.name.includes("-setup"));
+        setSetupFiles(files);
       } catch(error) {
-        console.error("Error fetching releaes", error);
+        console.error("Error fetching latest release", error);
       }
     }
-
+  
     fetchReleases();
   }, [])
 
@@ -66,8 +41,6 @@ export default function Index() {
             target="_blank"
             href="https://www.reddit.com/r/DeskThing/"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Go To Reddit")}
-          onMouseLeave={handleMouseLeave}
           >
             REDDIT
           </a>
@@ -77,8 +50,6 @@ export default function Index() {
             target="_blank"
             href="https://discord.gg/qWbSwzWJ4e"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Join our discord!")}
-          onMouseLeave={handleMouseLeave}
           >
             DISCORD
           </a>
@@ -88,8 +59,6 @@ export default function Index() {
               target="_blank"
               href="https://discord.gg/carthing"
               rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Official Car Thing Hax Server")}
-          onMouseLeave={handleMouseLeave}
             >
               Car Thing Hax
             </a>
@@ -98,8 +67,6 @@ export default function Index() {
               target="_blank"
               href="https://discord.gg/qWbSwzWJ4e"
               rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Official Deskthing Server")}
-          onMouseLeave={handleMouseLeave}
             >
               Deskthing
             </a>
@@ -110,8 +77,6 @@ export default function Index() {
             target="_blank"
             href="https://github.com/ItsRiprod/DeskThing"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Source code")}
-          onMouseLeave={handleMouseLeave}
           >
             GITHUB
           </a>
@@ -120,8 +85,6 @@ export default function Index() {
             target="_blank"
             href="https://trello.com/b/6v0paxqV/deskthing"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("TODO Lists and progress updates")}
-          onMouseLeave={handleMouseLeave}
           >
             TRELLO
           </a>
@@ -130,8 +93,6 @@ export default function Index() {
             target="_blank"
             href="https://buymeacoffee.com/riprod"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Buy me a coffee :P")}
-          onMouseLeave={handleMouseLeave}
           >
             SUPPORT
           </a>
@@ -140,8 +101,6 @@ export default function Index() {
             target="_blank"
             href="https://www.youtube.com/@deskthing"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Deskthing Youtube Channel")}
-          onMouseLeave={handleMouseLeave}
           >
             YOUTUBE
           </a>
@@ -150,14 +109,13 @@ export default function Index() {
             target="_blank"
             href="https://x.com/TheDeskThing"
             rel="noreferrer"
-          onMouseEnter={() => handleMouseEnter("Deskthing Twitter Account")}
-          onMouseLeave={handleMouseLeave}
           >
             TWITTER
           </a>
 
       </div>
       <h1 className="text-white font-geistMono pt-14 text-2xl">Downloads</h1>
+      
         <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
           {setupFiles.length > 0 ? setupFiles.map((file) => (
             file &&
@@ -171,20 +129,11 @@ export default function Index() {
                 {file.name}
               </a>          
           )) : (
-            <div className="flex gap-3 px-5">
-              <div className="animate-spin bg-green-400 w-5 h-5"></div>
-              <p className="text-white font-Wingding">Loading Releases</p>
+            <div className="flex gap-3 px-5 text-white">
+              <IconLogoLoading iconSize={224} />
             </div>
           )}
         </div>
-        <div
-        className={`fixed pointer-events-none p-2 bg-white text-black rounded-md shadow-lg transition-transform duration-200 transform -translate-x-1/2 -translate-y-full ${
-          hovered ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
-      >
-        {hovered.length > 1 ? (hovered) : <div>H</div>}
-      </div>
     </div>
   );
 }
