@@ -12,6 +12,9 @@ export default function Navbar() {
         <li>
           <Link to="/releases" className="text-white hover:text-green-400">Releases</Link>
         </li>
+        <li>
+          <Link to="/apps" className="text-white hover:text-green-400">Apps</Link>
+        </li>
         {/* Add more navigation items as needed */}
       </ul>
     </nav>
