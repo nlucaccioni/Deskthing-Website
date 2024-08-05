@@ -57,7 +57,7 @@ export default function Releases() {
           <a
             className="border border-blue-600 p-3 hover:bg-blue-600 rounded-xl text-white"
             target="_blank"
-            href="https://github.com/TylStres/DeskThingApp"
+            href="https://github.com/TylStres/DeskThing-Timer/"
             rel="noreferrer"
           >
             Timer App by TheNordicGoat
