@@ -7,13 +7,19 @@ export default function Navbar() {
       <ul className="flex space-x-4">
         <IconLogoGear iconSize={24} className={"text-white"} />
         <li>
-          <Link to="/" className="text-white hover:text-green-400">Home</Link>
+          <Link to="/" prefetch="intent" className="text-white hover:text-green-400">Home</Link>
         </li>
         <li>
-          <Link to="/releases" className="text-white hover:text-green-400">Releases</Link>
+          <Link to="/releases" prefetch="intent" className="text-white hover:text-green-400">Releases</Link>
         </li>
         <li>
-          <Link to="/apps" className="text-white hover:text-green-400">Apps</Link>
+          <Link to="/apps" prefetch="intent" className="text-white hover:text-green-400">Apps</Link>
+        </li>
+        <li>
+          <Link to="/about" prefetch="intent" className="text-white hover:text-green-400">About</Link>
+        </li>
+        <li>
+          <Link to="/supporters" prefetch="intent" className="text-white hover:text-green-400">Supporters</Link>
         </li>
         {/* Add more navigation items as needed */}
       </ul>
