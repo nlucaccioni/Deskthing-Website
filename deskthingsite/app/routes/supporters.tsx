@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import type { LoaderFunction } from "@remix-run/node";
 
 // Define a blacklist
-const blacklist = ["TheNordicGoat"];
+const blacklist = [""];
 
 interface Supporter {
   support_id: string;
