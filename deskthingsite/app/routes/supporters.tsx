@@ -19,8 +19,9 @@ interface Subscriber {
   payer_name: string;
   payer_email: string;
   plan_name: string;
-  subscription_note: string;
+  subscription_coffee_num: number;
   subscription_created_on: string;
+  subscription_message: string;
 }
 
 interface LoaderData {
@@ -89,16 +90,16 @@ export default function Supporters() {
   return (
     <div className="font-geist p-4 pt-20 max-w-screen min-h-screen bg-slate-800 flex flex-col items-center">
       <h1 className="text-white text-3xl font-bold mb-6">Caffeine Addiction Subscribers</h1>
-      <ul className="space-y-4">
+      <ul className="space-y-4 mb-6">
         {subscribers && subscribers.map((subscriber: Subscriber) => {
           const isBlacklisted = blacklist.includes(subscriber.payer_email) || blacklist.includes(subscriber.payer_name);
 
           return (
             <li key={subscriber.subscription_id} className="bg-white p-4 rounded shadow border-fuchsia-600 border-2">
               <div className="flex gap-3 items-center">
-                <h2 className="text-xl font-semibold">{isBlacklisted ? 'Anonymous' : subscriber.payer_name || 'Anonymous'}</h2>-<p className="text-fuchsia-600 font-semibold">{subscriber.support_coffees} Cup{subscriber.support_coffees > 1 ? 's' : ''} of Coffee</p>
+                <h2 className="text-xl font-semibold">{isBlacklisted ? 'Anonymous' : subscriber.payer_name || 'Anonymous'}</h2>-<p className="text-fuchsia-600 font-semibold">{subscriber.subscription_coffee_num} Cup{subscriber.subscription_coffee_num > 1 ? 's' : ''} of Coffee</p>
               </div>
-              <p>{isBlacklisted ? 'No message' : subscriber.subscription_note || 'No message'}</p>
+              <p>{isBlacklisted ? 'No message' : subscriber.subscription_message || 'No message'}</p>
               <p className="text-gray-500 font-geistMono"><i>Supported on: {subscriber.subscription_created_on}</i></p>
             </li>
           );
