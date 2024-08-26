@@ -114,26 +114,31 @@ export default function Index() {
           </a>
 
       </div>
-      <h1 className="text-white font-geistMono pt-14 text-2xl">Downloads</h1>
-      
-        <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
-          {setupFiles.length > 0 ? setupFiles.map((file) => (
-            file &&
+      <div className="flex items-center justify-between gap-4 pt-14 flex-wrap">
+        <iframe title="discord" src="https://canary.discord.com/widget?id=1267348109067817051&theme=dark" width="350" height="400" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        <div>
+          <h1 className="text-white font-geistMono text-2xl">Downloads</h1>
+          <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
+            {setupFiles.length > 0 ? setupFiles.map((file) => (
+              file &&
               <a
-                key={file.id}
-                className="border border-green-600 p-3 hover:bg-green-600 rounded-xl text-white"
-                target="_blank"
-                href={file.browser_download_url}
-                rel="noreferrer"
+              key={file.id}
+              className="border border-green-600 p-3 hover:bg-green-600 rounded-xl text-white"
+              target="_blank"
+              href={file.browser_download_url}
+              rel="noreferrer"
               >
-                {file.name}
-              </a>          
-          )) : (
-            <div className="flex gap-3 px-5 text-white">
-              <IconLogoLoading iconSize={224} />
-            </div>
-          )}
+                  {file.name}
+                </a>          
+            )) : (
+              <div className="flex gap-3 px-5 text-white">
+                <IconLogoLoading iconSize={224} />
+              </div>
+            )}
+          </div>
         </div>
+
+      </div>
     </div>
   );
 }
