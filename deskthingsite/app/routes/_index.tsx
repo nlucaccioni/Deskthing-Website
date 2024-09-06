@@ -44,7 +44,6 @@ export default function Index() {
           >
             REDDIT
           </a>
-          <div className="relative group">
           <a
             className="border border-indigo-600 p-3 hover:bg-indigo-600 rounded-xl text-white"
             target="_blank"
@@ -53,25 +52,6 @@ export default function Index() {
           >
             DISCORD
           </a>
-          <div className="absolute hidden group-hover:block border-indigo-600 border-b border-l border-r text-white rounded-lg mt-1 w-full">
-            <a
-              className="block text-center py-2 rounded-lg hover:bg-indigo-500"
-              target="_blank"
-              href="https://discord.gg/carthing"
-              rel="noreferrer"
-            >
-              Car Thing Hax
-            </a>
-            <a
-              className="block text-center py-2 rounded-lg hover:bg-indigo-500"
-              target="_blank"
-              href="https://discord.gg/qWbSwzWJ4e"
-              rel="noreferrer"
-            >
-              Deskthing
-            </a>
-          </div>
-        </div>
           <a
             className="border border-zinc-600 p-3 hover:bg-zinc-600 rounded-xl text-white"
             target="_blank"
