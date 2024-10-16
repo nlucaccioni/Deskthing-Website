@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 import { IconLogoLoading } from "../assets/icons";
+import { useReward } from 'react-rewards'
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,6 +12,12 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const [setupFiles, setSetupFiles] = useState<any[]>([])
+  const confettiConfig = {
+    startVelocity: 6,
+    elementCount: 7,
+    decay: 0.99
+  }
+  const { reward } = useReward('rewardId', 'confetti', confettiConfig)
 
   useEffect(() => {
     const fetchReleases = async () => {
@@ -73,7 +80,9 @@ export default function Index() {
             target="_blank"
             href="https://buymeacoffee.com/riprod"
             rel="noreferrer"
+            onMouseEnter={reward}
           >
+            <span id="rewardId" />
             SUPPORT
           </a>
           <a
