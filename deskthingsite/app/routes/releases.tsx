@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { IconLogoLoading } from "../assets/icons"
+import { IconLogoLoading } from '../assets/icons'
 
 export default function Releases() {
   const [setupFiles, setSetupFiles] = useState<any[]>([])
@@ -26,7 +26,7 @@ export default function Releases() {
   }, [])
 
   return (
-    <div className="font-geist p-4 pt-20 w-screen min-h-screen bg-slate-800 flex flex-col items-center">
+    <div className="font-geist p-4 pt-20 w-full min-h-screen bg-black flex flex-col items-center">
       <h1 className="text-white font-geistMono text-3xl mb-8">Releases</h1>
       <div className="flex-col flex max-w-2xl w-full">
         {setupFiles.length > 0 ? (

@@ -9,6 +9,7 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
   descId?: string;
   className?: string;
   fill?: string;
+  strokeWidth?: number;
   children?: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ export const Icon = ({
   desc,
   fill,
   descId,
+  strokeWidth,
   className,
   width = iconSize,
   height = iconSize,
@@ -33,6 +35,7 @@ export const Icon = ({
       height={height}
       fill={fill}
       width={width}
+      strokeWidth={strokeWidth || 2}
       viewBox={`0 0 ${width} ${height}`}
       className={className}
       {...restProps}

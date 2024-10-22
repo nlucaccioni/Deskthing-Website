@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import { IconLogo, IconLogoGear, IconLogoLoading } from "../assets/icons";
-
 export default function About() {
   return (
-    <div className="font-geist p-4 pt-20 max-w-screen min-h-screen bg-slate-800 text-white flex flex-col items-center">
-      <div className="max-w-4xl">
+    <div className="font-geist p-4 pt-20 max-w-screen min-h-screen bg-black text-white flex flex-col items-center">
+      <div className="max-w-4xl bg-zinc-900 p-8 rounded-lg shadow-lg border border-zinc-800">
         <h1 className="text-4xl font-bold mb-4">What is the DeskThing?</h1>
         
         <section className="mb-8">
@@ -39,7 +36,10 @@ export default function About() {
           </ul>
         </section>
         <p className="text-xl">Thank you</p>
-        <section className="mt-96">
+      </div>
+        <div className="max-w-4xl my-52 bg-zinc-900 p-8 rounded-lg shadow-lg">
+
+        <section className="">
           <p>Okay, fancy company talk aside.</p>
           <p className="indent-4">I want this to act as a sign of encouragement. You&apos;ve made it this far, why not shoot for the moon? And once you hit that, aim for the stars. You&apos;ll never know what you&apos;re capable of unless you try. You will fail. We all do. But you can always try again. </p>
           <p className="indent-4">Realistically I doubt anyone is going to find this. But if you have somehow stumbled upon my little project on this corner of the internet. I want to welcome you here. I&apos;m really trying my hardest to make the DeskThing an easy entrypoint for beginners to mess around with real tools to build their own deskside applications. If you&apos;re at all interested or want to support this project, there are links on the home page of this site.</p>
@@ -47,7 +47,7 @@ export default function About() {
           <p>Thank you,</p>
           <p>Riprod</p>
         </section>
-      </div>
+        </div>
     </div>
   );
 }

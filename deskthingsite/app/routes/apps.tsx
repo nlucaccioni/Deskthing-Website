@@ -26,7 +26,7 @@ export default function Releases() {
   }, [])
 
   return (
-    <div className="font-geist p-4 pt-20 w-screen min-h-screen flex-col lg:flex-row justify-around bg-slate-800 flex items-center">
+    <div className="font-geist p-4 pt-20 w-screen min-h-screen flex-col lg:flex-row justify-around bg-black flex items-center">
       <div className="flex flex-col w-1/3">
         <h1 className="text-white font-geistMono text-3xl mb-8">Official Apps</h1>
         <div className="flex-col flex max-w-2xl w-full max-h-64 overflow-auto">

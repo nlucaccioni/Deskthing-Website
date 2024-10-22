@@ -88,30 +88,30 @@ export default function Supporters() {
   const { supporters, subscribers } = useLoaderData<LoaderData>();
 
   return (
-    <div className="font-geist p-4 pt-20 max-w-screen min-h-screen bg-slate-800 flex flex-col items-center">
+    <div className="font-geist text-white p-4 pt-20 max-w-screen min-h-screen bg-black flex flex-col items-center">
       <h1 className="text-white text-3xl font-bold mb-6">Caffeine Addiction Subscribers</h1>
-      <ul className="space-y-4 mb-6">
+      <div className="space-y-4 mb-6">
         {subscribers && subscribers.map((subscriber: Subscriber) => {
           const isBlacklisted = blacklist.includes(subscriber.payer_email) || blacklist.includes(subscriber.payer_name);
 
           return (
-            <li key={subscriber.subscription_id} className="bg-white p-4 rounded shadow border-fuchsia-600 border-2">
+            <div key={subscriber.subscription_id} className="bg-zinc-900 w-full p-4 rounded shadow border-fuchsia-600 border-2">
               <div className="flex gap-3 items-center">
                 <h2 className="text-xl font-semibold">{isBlacklisted ? 'Anonymous' : subscriber.payer_name || 'Anonymous'}</h2>-<p className="text-fuchsia-600 font-semibold">{subscriber.subscription_coffee_num} Cup{subscriber.subscription_coffee_num > 1 ? 's' : ''} of Coffee</p>
               </div>
               <p>{isBlacklisted ? 'No message' : subscriber.subscription_message || 'No message'}</p>
               <p className="text-gray-500 font-geistMono"><i>Supported on: {subscriber.subscription_created_on}</i></p>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
       <h1 className="text-white text-3xl font-bold mb-6">Caffeine Addiction Enablers</h1>
-      <ul className="space-y-4">
+      <div className="space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {supporters && supporters.map((supporter: Supporter) => {
           const isBlacklisted = blacklist.includes(supporter.payer_email) || blacklist.includes(supporter.payer_name);
 
           return (
-            <li key={supporter.support_id} className="bg-white p-4 rounded shadow border-fuchsia-600 border-2">
+            <li key={supporter.support_id} className="bg-zinc-900 p-4 rounded shadow border-fuchsia-600 border-2">
               <div className="flex gap-3 items-center">
                 <h2 className="text-xl font-semibold">{isBlacklisted ? 'Anonymous' : supporter.payer_name || 'Anonymous'}</h2>-<p className="text-fuchsia-600 font-semibold">{supporter.support_coffees} Cup{supporter.support_coffees > 1 ? 's' : ''} of Coffee</p>
               </div>
@@ -120,8 +120,8 @@ export default function Supporters() {
             </li>
           );
         })}
-      </ul>
-      <div className="group border-fuchsia-600 mt-10 border p-5 bg-white">
+      </div>
+      <div className="group border-fuchsia-600 mt-10 border p-5 bg-zinc-900">
         <p>Thanks to all of these amazing people I am able to pull development nights well into the AMs! Whether or not that is a good thing is up to you to decide.</p>
         <p>It feels wrong to ask for money, but if you feel like supporting this venture you can donate <a
             className="hover:text-zinc-500 rounded-xl text-fuchsia-600"

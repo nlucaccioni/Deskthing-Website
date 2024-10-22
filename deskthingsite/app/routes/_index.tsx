@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useEffect, useState } from "react";
 import { IconLogoLoading } from "../assets/icons";
-import { useReward } from 'react-rewards'
+import { useReward } from "react-rewards";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,13 +11,13 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  const [setupFiles, setSetupFiles] = useState<any[]>([])
+  const [setupFiles, setSetupFiles] = useState<any[]>([]);
   const confettiConfig = {
     startVelocity: 6,
     elementCount: 7,
-    decay: 0.99
-  }
-  const { reward } = useReward('rewardId', 'confetti', confettiConfig)
+    decay: 0.99,
+  };
+  const { reward } = useReward("rewardId", "confetti", confettiConfig);
 
   useEffect(() => {
     const fetchReleases = async () => {
@@ -26,23 +26,50 @@ export default function Index() {
           "https://api.github.com/repos/itsriprod/deskthing/releases/latest"
         );
         const data = await response.json();
-        const files = data.assets.filter((asset) => asset.name.includes("-setup"));
+        const files = data.assets.filter((asset) =>
+          asset.name.includes("-setup")
+        );
         setSetupFiles(files);
-      } catch(error) {
+      } catch (error) {
         console.error("Error fetching latest release", error);
       }
-    }
-  
+    };
+
     fetchReleases();
-  }, [])
+  }, []);
 
   return (
-    <div className="font-geist p-4 w-screen h-screen bg-slate-800 flex flex-col items-center justify-center">
-      <div>
-        <p className="text-white">The</p>
+    <div className="font-geist pt-32 md:pt-10 text-white p-4 w-screen h-screen bg-black flex lg:flex-row flex-col">
+      <div className="lg:w-1/2 h-full bg-zinc-950 min-h-fit flex flex-col md:flex-row-reverse gap-2 lg:flex-col justify-center items-center border-r border-zinc-800">
         <h1 className="font-Wingding text-white text-5xl">DESKTHING</h1>
+        <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
+              {setupFiles.length > 0 ? (
+                setupFiles.map(
+                  (file) =>
+                    file && (
+                      <a
+                        key={file.id}
+                        className="border border-green-600 p-3 hover:bg-green-600 rounded-xl text-white"
+                        target="_blank"
+                        href={file.browser_download_url}
+                        rel="noreferrer"
+                      >
+                        {file.name}
+                      </a>
+                    )
+                )
+              ) : (
+                <div className="flex gap-3 px-5 text-white">
+                  <IconLogoLoading iconSize={224} />
+                </div>
+              )}
+            </div>
       </div>
-      <div className="flex flex-wrap pt-5 items-center justify-center gap-4">
+      <div className="w-full h-full overflow-y-auto flex flex-col items-center justify-center">
+        <h1 className="text-semibold text-4xl font-semibold my-5">
+              Connect with the Community! 
+        </h1>
+        <div className="w-full lg:px-10 lg:gap-3 grid grid-rows-2 lg:grid-rows-1 grid-flow-col py-4 bg-zinc-900">
           <a
             className="border border-amber-600 p-3 hover:bg-amber-600 rounded-xl text-white"
             target="_blank"
@@ -101,32 +128,7 @@ export default function Index() {
           >
             TWITTER
           </a>
-
-      </div>
-      <div className="flex items-center justify-between gap-4 pt-14 flex-wrap">
-        <iframe title="discord" src="https://canary.discord.com/widget?id=1267348109067817051&theme=dark" width="350" height="400" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-        <div>
-          <h1 className="text-white font-geistMono text-2xl">Downloads</h1>
-          <div className="flex-col flex max-h-96 overflow-y-auto pt-5 gap-4">
-            {setupFiles.length > 0 ? setupFiles.map((file) => (
-              file &&
-              <a
-              key={file.id}
-              className="border border-green-600 p-3 hover:bg-green-600 rounded-xl text-white"
-              target="_blank"
-              href={file.browser_download_url}
-              rel="noreferrer"
-              >
-                  {file.name}
-                </a>          
-            )) : (
-              <div className="flex gap-3 px-5 text-white">
-                <IconLogoLoading iconSize={224} />
-              </div>
-            )}
-          </div>
         </div>
-
       </div>
     </div>
   );
