@@ -80,9 +80,7 @@ export default function Index() {
           </a>
           <a
             className="border border-indigo-600 p-3 hover:bg-indigo-600 rounded-xl text-white"
-            target="_blank"
-            href="https://discord.gg/qWbSwzWJ4e"
-            rel="noreferrer"
+            href="/discord"
           >
             DISCORD
           </a>

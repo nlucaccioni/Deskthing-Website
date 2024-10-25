@@ -27,7 +27,7 @@ export default function Navbar() {
         {navItems.map((item) => (
           <NavButton key={item.to} to={item.to}>
             {item.icon && <item.icon className="stroke-white fill-none" />}
-            <p className="text-gray-300 hidden md:block group-hover:block group-hover:text-white group-hover:font-semibold">
+            <p className="text-gray-300 hidden md:block group-hover:text-white">
               {item.label}
             </p>
           </NavButton>

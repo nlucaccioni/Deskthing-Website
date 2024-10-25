@@ -111,13 +111,13 @@ export default function Supporters() {
           const isBlacklisted = blacklist.includes(supporter.payer_email) || blacklist.includes(supporter.payer_name);
 
           return (
-            <li key={supporter.support_id} className="bg-zinc-900 p-4 rounded shadow border-fuchsia-600 border-2">
+            <div key={supporter.support_id} className="bg-zinc-900 p-4 rounded shadow border-fuchsia-600 border-2">
               <div className="flex gap-3 items-center">
                 <h2 className="text-xl font-semibold">{isBlacklisted ? 'Anonymous' : supporter.payer_name || 'Anonymous'}</h2>-<p className="text-fuchsia-600 font-semibold">{supporter.support_coffees} Cup{supporter.support_coffees > 1 ? 's' : ''} of Coffee</p>
               </div>
               <p>{isBlacklisted ? 'No message' : supporter.support_note || 'No message'}</p>
               <p className="text-gray-500 font-geistMono"><i>Supported on: {supporter.support_created_on}</i></p>
-            </li>
+            </div>
           );
         })}
       </div>
