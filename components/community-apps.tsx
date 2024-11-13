@@ -7,9 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Github, Star, X } from "lucide-react";
+import { ExternalLink, Github, Star, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { SiGithub } from "react-icons/si";
 
 type App = {
   title: string;
@@ -17,7 +19,7 @@ type App = {
   author: string;
   stars: number;
   tags: string[];
-  repoUrl: string;
+  repoUrl: string | null;
 };
 
 // todo: define this elsewhere (or on an API?) so its easier to update
@@ -28,7 +30,7 @@ const apps: App[] = [
     author: "espeon",
     stars: 124,
     tags: ["music", "api", "beta"],
-    repoUrl: "#",
+    repoUrl: "https://github.com/espeon/lyrthing",
   },
   {
     title: "Market Hub",
@@ -36,7 +38,7 @@ const apps: App[] = [
     author: "dakota-kallas",
     stars: 89,
     tags: ["system", "monitoring", "beta"],
-    repoUrl: "#",
+    repoUrl: "https://github.com/dakota-kallas/DeskThing-MarketHub",
   },
   {
     title: "WeatherWave",
@@ -45,7 +47,7 @@ const apps: App[] = [
     author: "Dammit Jeff",
     stars: 256,
     tags: ["music", "weather", "beta"],
-    repoUrl: "#",
+    repoUrl: null,
   },
   {
     title: "Global Media Player",
@@ -53,7 +55,7 @@ const apps: App[] = [
     author: "RandomDebugGuy",
     stars: 67,
     tags: ["music", "media", "alpha"],
-    repoUrl: "#",
+    repoUrl: "https://github.com/RandomDebugGuy/DeskThing-GMP",
   },
   {
     title: "Timer App",
@@ -61,7 +63,7 @@ const apps: App[] = [
     author: "TylStres",
     stars: 143,
     tags: ["notifications", "system", "stable"],
-    repoUrl: "#",
+    repoUrl: "https://github.com/TylStres/DeskThing-Timer",
   },
   {
     title: "Volume Mixer",
@@ -70,7 +72,7 @@ const apps: App[] = [
     author: "jarsa132",
     stars: 178,
     tags: ["media", "control", "beta"],
-    repoUrl: "#",
+    repoUrl: "https://github.com/jarsa132/DeskThing-VolCtrl",
   },
 ];
 
@@ -188,13 +190,16 @@ export function CommunityApps({ limit }: { limit?: number }) {
                     by {app.author}
                   </CardDescription>
                 </div>
-                <Link
-                  href={app.repoUrl}
-                  className="flex items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
-                >
-                  <Star className="w-4 h-4" />
-                  <span>{app.stars}</span>
-                </Link>
+                {app.repoUrl && (
+                  <Button variant="ghost">
+                    <Link
+                      href={app.repoUrl}
+                      className="flex items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                )}
               </div>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between -mt-4">
