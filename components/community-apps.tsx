@@ -213,7 +213,8 @@ export function CommunityApps({ limit }: { limit?: number }) {
                     variant="outline"
                     className={`${
                       tagColors[tag] || "bg-gray-500/10 text-gray-500"
-                    } border-none`}
+                    } border-none cursor-pointer`}
+                    onClick={() => toggleTag(tag)}
                   >
                     {tag}
                   </Badge>

@@ -24,16 +24,25 @@ function DesktopRedirect() {
     const redirectUrl = `deskthing://${path}?${newParams.toString()}`;
 
     // Use window.location for client-side redirect
-    window.location.href = redirectUrl;
     setTimeout(() => {
-      window.location.href = "/";
-    }, 5000);
+      window.location.href = redirectUrl;
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 4000);
+    }, 250)
   }, [searchParams]);
 
   // Render nothing while redirecting
   return (
-    <div className="h-full w-full flex align-center justify-center">
+    <div className="h-full w-full flex flex-col align-center items-center justify-center">
       <div className="text-xl">Launching your DeskThing server</div>
+
+      <div className="mt-4">
+        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+          Click here to go back manually
+        </a>
+      </div>
+
     </div>
   );
 }

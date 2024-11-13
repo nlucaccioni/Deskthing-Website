@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { CommunityApps } from '@/components/community-apps';
-
+import React from 'react'
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -138,10 +138,12 @@ export default function Home() {
           </div>
           <CommunityApps limit={6} />
           <div className="flex align-center justify-center mt-4">
-            <Button variant="outline">
-              More apps
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/apps">
+              <Button variant="outline">
+                  More apps
+                  <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </section>
 
