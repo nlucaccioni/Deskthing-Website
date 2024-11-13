@@ -8,7 +8,7 @@ export default function Releases() {
     const fetchReleases = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/itsriprod/deskthing/releases"
+          "https://api.github.com/repos/itsriprod/deskthing-apps/releases"
         )
         const data = await response.json()
         const files = []
@@ -61,6 +61,38 @@ export default function Releases() {
             rel="noreferrer"
           >
             Timer App by TheNordicGoat
+          </a>
+          <a
+            className="border border-blue-600 p-3 hover:bg-blue-600 rounded-xl text-white"
+            target="_blank"
+            href="https://github.com/dakota-kallas/DeskThing-MarketHub"
+            rel="noreferrer"
+          >
+            MarketHub by Dakota-Kallas
+          </a>
+          <a
+            className="border border-blue-600 p-3 hover:bg-blue-600 rounded-xl text-white"
+            target="_blank"
+            href="https://github.com/RandomDebugGuy/DeskThing-GMP"
+            rel="noreferrer"
+          >
+            Global Media Player by RandomDebugGuy
+          </a>
+          <a
+            className="border border-blue-600 p-3 hover:bg-blue-600 rounded-xl text-white"
+            target="_blank"
+            href="https://github.com/Jarsa132/deskthing-volctrl"
+            rel="noreferrer"
+          >
+            Audio Mixer by Jarsal132
+          </a>
+          <a
+            className="border border-blue-600 p-3 hover:bg-blue-600 rounded-xl text-white"
+            target="_blank"
+            href="https://github.com/espeon/lyrthing"
+            rel="noreferrer"
+          >
+            LyrThing by Ameiw
           </a>
       </div>
     </div>
