@@ -1,26 +1,32 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function DesktopRedirect() {
+export default function RedirectWrapper() {
+  return (
+    <Suspense>
+      <DesktopRedirect />
+    </Suspense>
+  );
+}
+
+function DesktopRedirect() {
   const searchParams = useSearchParams();
 
-  const [error, setError] = useState<null | string>(null);
-
   useEffect(() => {
-    let path = searchParams.get('path');
+    let path = searchParams.get("path");
 
     // Create a new URLSearchParams object
     const newParams = new URLSearchParams(searchParams);
-    newParams.delete('path');
+    newParams.delete("path");
 
     const redirectUrl = `deskthing://${path}?${newParams.toString()}`;
 
     // Use window.location for client-side redirect
     window.location.href = redirectUrl;
     setTimeout(() => {
-      window.location.href = '/';
+      window.location.href = "/";
     }, 5000);
   }, [searchParams]);
 
