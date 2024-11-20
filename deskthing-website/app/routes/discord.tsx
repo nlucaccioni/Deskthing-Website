@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 
 export default function Discord() {
   useEffect(() => {
-    window.location.href = "https://discord.gg/qWbSwzWJ4e";
+    window.location.href = "https://discord.gg/deskthing-1267348109067817051";
   }, []);
 
   return (
@@ -25,7 +25,7 @@ export default function Discord() {
           <a
             className="border border-indigo-600 p-3 hover:bg-indigo-600 rounded-xl text-white inline-block"
             target="_blank"
-            href="https://discord.gg/qWbSwzWJ4e"
+            href="https://discord.gg/deskthing-1267348109067817051"
             rel="noreferrer"
           >
             <p className="group-hover:block hidden">Click To Join</p>
