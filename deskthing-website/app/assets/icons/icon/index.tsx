@@ -1,27 +1,29 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react'
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
-  iconSize?: number;
-  color?: string;
-  title?: string;
-  titleId?: string;
-  desc?: string;
-  descId?: string;
-  className?: string;
-  fill?: string;
-  strokeWidth?: number;
-  children?: React.ReactNode;
+  iconSize?: number
+  strokeWidth?: number
+  stroke?: string
+  color?: string
+  title?: string
+  titleId?: string
+  desc?: string
+  descId?: string
+  className?: string
+  fill?: string
+  children?: React.ReactNode
 }
 
 export const Icon = ({
   iconSize = 24,
-  color = "currentColor",
+  color = 'currentColor',
   title,
   titleId,
   desc,
-  fill,
+  stroke = 'currentColor',
+  fill = 'none',
   descId,
-  strokeWidth,
+  strokeWidth = 1,
   className,
   width = iconSize,
   height = iconSize,
@@ -34,15 +36,16 @@ export const Icon = ({
       role="img"
       height={height}
       fill={fill}
+      stroke={stroke}
       width={width}
-      strokeWidth={strokeWidth || 2}
       viewBox={`0 0 ${width} ${height}`}
       className={className}
+      strokeWidth={strokeWidth}
       {...restProps}
     >
       {title && <title id={titleId}>{title}</title>}
       {desc && <desc id={descId}>{desc}</desc>}
       {children}
     </svg>
-  );
-};
+  )
+}

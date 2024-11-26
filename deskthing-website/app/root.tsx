@@ -16,7 +16,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/icon-192x192.png" />
+        <link rel="icon" href="/images/AppIcon.png" />
         <Meta />
         <Links />
       </head>

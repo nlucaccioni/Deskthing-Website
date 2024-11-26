@@ -7,7 +7,7 @@ interface NavProps {
 }
 
 const NavButton = ({ to, children }: NavProps) => (
-    <Link to={to} prefetch="intent" className="group flex gap-2">
+    <Link to={to} prefetch="intent" className="group flex gap-2 items-center">
       {children}
     </Link>
 );
