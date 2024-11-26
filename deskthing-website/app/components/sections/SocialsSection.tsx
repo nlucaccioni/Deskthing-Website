@@ -24,7 +24,7 @@ const SocialsSection = () => {
         <h1 className="text-semibold text-4xl font-semibold my-5">
           Connect with the Community!
         </h1>
-        <div className="w-full lg:px-10 lg:gap-3 grid grid-rows-2 xl:grid-rows-1 grid-flow-col py-4 bg-zinc-900">
+        <div className="w-full lg:px-10 lg:gap-3 grid grid-rows-4 xs:grid-rows-3 sm:grid-rows-2 xl:grid-rows-1 grid-flow-col py-4 bg-zinc-900">
           <LinkButton
             className="border-amber-600 hover:bg-amber-600"
             link="https://www.reddit.com/r/DeskThing/"

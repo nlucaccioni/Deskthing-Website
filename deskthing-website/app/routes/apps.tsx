@@ -156,8 +156,6 @@ export default function Releases() {
           author: file.uploader.login,
           authorUrl: file.uploader.html_url
         }))
-
-        console.log(releaseFiles)
         
         sessionStorage.setItem('deskthing-releases', JSON.stringify(releaseFiles));
         sessionStorage.setItem('deskthing-releases-timestamp', Date.now().toString());
