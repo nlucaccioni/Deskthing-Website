@@ -175,10 +175,10 @@ export default function Releases() {
   }, [])
 
   return (
-    <div className="font-geist gap-24 p-4 pt-20 w-screen min-h-screen flex-col h-full justify-around bg-black flex items-center">
-      <div className="flex flex-col h-full w-full">
+    <div className="font-geist w-full gap-24 p-4 pt-20 min-h-screen flex-col h-full justify-around bg-black flex items-center">
+      <div className="flex flex-col items-center mt-10 h-full w-full">
         <h1 className="text-white w-full text-center font-geistMono text-3xl mb-8">Official Apps</h1>
-        <div className="flex gap-5 justify-center w-full overflow-auto flex-wrap">
+        <div className="grid md:grid-cols-2 gap-2 max-w-[1000px] w-full overflow-auto flex-wrap">
           {isLoading ? (
             <div className="flex justify-center gap-3 px-5 text-white">
               <IconLogoLoading iconSize={224} />
@@ -197,9 +197,9 @@ export default function Releases() {
           )}
         </div>
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full items-center">
         <h1 className="text-white text-center w-full font-geistMono text-3xl mb-8">Community Apps</h1>
-        <div className="flex gap-5 justify-center w-full overflow-auto flex-wrap">
+        <div className="grid md:grid-cols-2 gap-2 max-w-[1000px] w-full overflow-auto flex-wrap">
           {communityApps.map((repo, index) => (
           <CommunityApp
             key={index}

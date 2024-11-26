@@ -15,7 +15,6 @@ const NavButton = ({ to, children }: NavProps) => (
 export default function Navbar() {
   const navItems = [
     { to: "/", label: "Home", icon: IconHome},
-    { to: "/releases", label: "Releases", icon: IconCarThing },
     { to: "/apps", label: "Apps", icon: IconLayoutGrid },
     { to: "/about", label: "About", icon: IconAbout },
     { to: "/supporters", label: "Supporters", icon: IconCoffee },

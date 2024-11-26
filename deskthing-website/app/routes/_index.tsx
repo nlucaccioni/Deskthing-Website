@@ -47,9 +47,9 @@ export default function Index() {
 
   return (
     <div className="font-geist pt-32 md:pt-10 text-white p-4 w-screen h-screen bg-black flex lg:flex-row flex-col">
-      <div className="lg:w-1/2 h-full bg-zinc-950 min-h-fit flex flex-col md:flex-row-reverse gap-2 lg:flex-col justify-center items-center border-r border-b border-zinc-800">
+      <div className="lg:w-fit lg:p-5 h-full bg-zinc-950 min-h-fit flex flex-col md:flex-row-reverse gap-2 lg:flex-col justify-center items-center lg:border-r border-b border-zinc-800">
         <h1 className="font-Wingding text-white text-5xl">DESKTHING</h1>
-        <div className="flex-col flex max-h-[50vh] overflow-y-auto pt-5 gap-4">
+        <div className="flex-col flex max-h-[1000px] overflow-y-auto pt-5 gap-4">
           {setupFiles.length > 0 ? (
             setupFiles.map(
               (file) =>
@@ -68,13 +68,16 @@ export default function Index() {
                 )
             )
           ) : (
-            <div className="flex gap-3 px-5 text-white">
-              <IconLogoLoading iconSize={224} />
+            <div className="flex flex-col items-center gap-3 px-5 text-white">
+              <IconLogoLoading iconSize={124} />
+              <a className="hover:underline" href="https://github.com/itsriprod/deskthing/releases/latest" target="_blank" rel="noopener noreferrer">
+                Go To Releases on Github
+              </a>
             </div>
           )}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center">
         <SocialsSection />
         <AboutSection />
       </div>
