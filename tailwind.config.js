@@ -18,6 +18,8 @@ module.exports = {
       '6': '30px',
       '7': '35px',
       '8': '40px',
+      'columnGap': '60px',
+      'sectionGap': '140px',
       'nav': '75px',
       'sidebar': '300px',
     },

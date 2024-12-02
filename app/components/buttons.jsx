@@ -4,7 +4,7 @@ function BtnIcon({ to, icon, label }) {
     return (
         <a href={to} 
         className="font-mono px-4 py-2 border border-neutral-800 rounded-lg flex flex-row items-center gap-2 w-fit
-        hover:bg-neutral-50/10 transition ease-in-out duration-200">
+        hover:bg-neutral-50/10 hover:text-green-400 transition ease-in-out duration-200">
             {icon}
             {label}
         </a>

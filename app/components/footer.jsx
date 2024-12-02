@@ -8,7 +8,7 @@ import IconYoutube from "../assets/icons/Youtube";
 
 function VertLine () {
     return (
-            <div style={{width: "1px", height: "44px"}} className="bg-neutral-800"></div>
+            <div style={{width: "1.5px", height: "44px"}} className="bg-neutral-800"></div>
     )
 }
 
@@ -32,7 +32,7 @@ export default function Footer(){
     };
 
     return (
-        <footer className="flex flex-row justify-between items-center py-3 px-6 border-t border-neutral-800">
+        <footer className="flex flex-row justify-between items-center py-3 px-6 border-t border-neutral-800 bg-neutral-950">
             <p className="text-xs text-neutral-300">©2024 DeskThing Contributors</p>
             <div className="flex flex-row gap-2">
                 <IconButton to={links.github} icon={<IconGithub/>}/>
