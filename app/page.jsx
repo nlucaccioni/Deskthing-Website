@@ -1,16 +1,12 @@
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Sidebar from "./components/sidebar";
 
 export default function () {
     return (
         <>
-            <Navbar />
-            <div className="min-h-svh">
+            <div className="min-h-svh flex flex-grow justify-between pt-nav">
                 <h1>Take Back the Car Thing</h1>
-
+                <Sidebar />
             </div>
-            
-            <Footer />
         </>
     );
 }
