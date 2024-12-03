@@ -12,6 +12,13 @@
     max-width: 75ch;
 }
 
+h1 {
+    font-family: "GeistMono", monospace;
+    font-size: 6rem;
+    line-height: 1;
+    font-weight: 800; 
+}
+
 h2 {
     font-family: "Geist", sans-serif;
     font-size: 2.25rem;
@@ -20,6 +27,24 @@ h2 {
     margin-bottom: 1rem;
 }
 
+h3 {
+    font-family: "GeistMono", monospace;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
 p {
     font-weight: 300;
+}
+
+.imgDropShadow {
+    filter: drop-shadow(0px 0px 160px rgba(22, 163, 74, 0.30));
+}
+
+.hoverDropShadow:hover {
+    filter: drop-shadow(0px 0px 30px rgba(22, 163, 74, 0.30));
+    transition: all;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
 }

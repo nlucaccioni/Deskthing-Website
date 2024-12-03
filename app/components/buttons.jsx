@@ -11,14 +11,17 @@ function BtnIcon({ to, icon, label }) {
     )
 }
 
-function  BtnArrow({ to, label}) {
+function  BtnArrow({ to, label, filled}) {
+    const baseStyles =
+    "font-mono text-sm px-4 py-2 border border-neutral-800 rounded-lg flex flex-row items-center gap-2 w-fit hover:bg-neutral-50/10 hover:gap-3 transition-all ease-in-out duration-200";
+    const filledStyles = 
+    filled ? "bg-neutral-50 text-neutral-950 hover:bg-green-600" : "";
+
     return (   
-        <a href={to}
-        className="font-mono text-sm px-4 py-2 border border-neutral-800 rounded-lg flex flex-row items-center gap-2 w-fit
-        hover:bg-neutral-50/10 hover:gap-3 transition-all ease-in-out duration-200">
-            {label}
-            <MiniArrowRight />
-        </a>
+        <a href={to} className={`${baseStyles} ${filledStyles}`}>
+      {label}
+      <MiniArrowRight />
+    </a>
     )
 }
 

@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['var(--font-geist-sans)', 'sans-serif'],
-      mono: ['var(--font-geist-mono)', 'sans-serif'],
+      mono: ['var(--font-geist-mono)', 'monospace'],
     },
     spacing: {
       '1': '5px',
