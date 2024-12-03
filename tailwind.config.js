@@ -24,7 +24,12 @@ module.exports = {
       'nav': '75px',
       'sidebar': '300px',
     },
-    extend: {},
+    extend: {
+      scale: {
+        '101': '1.01',
+        '102': '1.02',
+      },
+    },
   },
   plugins: [],
 }
