@@ -46,13 +46,13 @@ export default function () {
                 <img
                   src="/imgs/DeskThing_Device.png"
                   alt="Desk Thing Device"
-                  className="imgDropShadow absolute aspect-auto"
                   style={{
                     width: "500px",
-                    transform: "rotate(-9.664deg)",
                     right: "-50px",
                     bottom: "4px",
                   }}
+                  className="imgDropShadow absolute aspect-auto hover:scale-110 
+                  -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
                 />
               </div>
             </section>

@@ -22,7 +22,7 @@ export default function Navbar() {
     )
     
     return (
-        <nav className="fixed w-screen flex flex-row justify-between items-center py-3 px-6 border-b border-neutral-800 bg-neutral-950/80">
+        <nav className="z-50 fixed w-screen flex flex-row justify-between items-center py-3 px-6 border-b border-neutral-800 bg-neutral-950/80">
             <div className="flex flex-row gap-5">
                 <a href="/"><LogoSVG /></a>
                 <ul className="flex flex-row items-center gap-3">{navList}</ul>
