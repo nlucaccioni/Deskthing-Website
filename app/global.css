@@ -45,7 +45,7 @@ p {
 }
 
 .imgDropShadow {
-    filter: drop-shadow(0px 0px 160px rgba(22, 163, 74, 0.30));
+    filter: drop-shadow(0px 0px 160px rgba(22, 163, 74, .5));
 }
 
 .hoverDropShadow:hover {

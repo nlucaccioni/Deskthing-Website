@@ -24,6 +24,23 @@ export default function () {
 
   return (
     <>
+      <svg xmlns="http://www.w3.org/2000/svg" style={{display:"none"}}>
+        <defs>
+          <filter id="noise" x="0" y="0" width="100%" height="100%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.1"
+              numOctaves="2"
+              result="noise"
+            />
+            <feDiffuseLighting
+              in="noise"
+              lightingColor="white"
+              surfaceScale="1"
+            />
+          </filter>
+        </defs>
+      </svg>
       <div className="min-h-svh flex flex-row justify-between pt-nav">
         <div className=" border-r border-neutral-800 w-full">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
@@ -43,17 +60,19 @@ export default function () {
                   <BtnArrow to="/" label="Get Started" filled={true} />
                   <BtnArrow to={btnLinks.github} label="Documentation" />
                 </div>
-                <img
-                  src="./imgs/DeskThing_Device.png"
-                  alt="Desk Thing Device"
-                  style={{
-                    width: "500px",
-                    right: "-50px",
-                    bottom: "4px",
-                  }}
-                  className="imgDropShadow absolute aspect-auto hover:scale-110 
-                  -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
-                />
+                <div>
+                  <img
+                      src="./imgs/DeskThing_Device.png"
+                      alt="Desk Thing Device"
+                      style={{
+                        width: "500px",
+                        right: "-50px",
+                        bottom: "4px",
+                      }}
+                      className="imgDropShadow absolute aspect-auto hover:scale-110 
+                      -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
+                    />
+                </div>
               </div>
             </section>
             {/* Connect */}
