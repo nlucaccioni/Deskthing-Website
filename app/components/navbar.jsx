@@ -11,10 +11,10 @@ function NavLink({ href, label}) {
 
 export default function Navbar() {
     const navItems = [
-        { href: "/", label: "Home"},
-        { href: "/about", label: "About"},
-        { href: "/apps", label: "Apps"},
-        { href: "/supporters", label: "Supporters"},
+        { href: "./", label: "Home"},
+        { href: "./about", label: "About"},
+        { href: "./apps", label: "Apps"},
+        { href: "./supporters", label: "Supporters"},
     ];
 
     const navList = navItems.map((item, index) => 
