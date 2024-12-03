@@ -44,7 +44,7 @@ export default function () {
                   <BtnArrow to={btnLinks.github} label="Documentation" />
                 </div>
                 <img
-                  src="/imgs/DeskThing_Device.png"
+                  src="./imgs/DeskThing_Device.png"
                   alt="Desk Thing Device"
                   style={{
                     width: "500px",

@@ -22,7 +22,7 @@ export default function AboutPage() {
             </p>
             <div className="w-full bg-white rounded-2xl h-64 overflow-clip mt-4 border border-neutral-700">
               <img
-                src="/imgs/CarThing_Hero.png"
+                src="./imgs/CarThing_Hero.png"
                 alt="Spotify CarThing"
                 className="object-cover w-full h-full"
               />
@@ -46,7 +46,7 @@ export default function AboutPage() {
             </p>
             <div className="w-full bg-white rounded-2xl h-64 overflow-clip mt-4 border border-neutral-700">
               <img
-                src="/imgs/DeskThing_Hero.png"
+                src="./imgs/DeskThing_Hero.png"
                 alt="DeskThing Logo"
                 className="object-cover w-full h-full"
               />
