@@ -10,7 +10,35 @@ import IconYoutube from "./assets/icons/Youtube";
 import IconBluesky from "./assets/icons/Bluesky";
 import CommunityStats from "./components/communitystats";
 
-export default function () {
+async function fetchDownloadUrls() {
+  const url = `https://api.github.com/repos/itsriprod/deskthing/releases/latest`;
+
+  try {
+    const response = await fetch(url, {
+      next: { revalidate: 3600 }, // Revalidate cache every hour
+    });
+    if (!response.ok) {
+      throw new Error(`Error fetching releases: ${response.statusText}`);
+    }
+
+    const release = await response.json();
+    const assets = release.assets;
+
+    return {
+      linuxDeb: assets.find((asset) => asset.name.includes("amd64") && asset.name.endsWith(".deb"))?.browser_download_url,
+      linuxAppImage: assets.find((asset) => asset.name.includes("linux") && asset.name.endsWith(".AppImage"))?.browser_download_url,
+      macArm64: assets.find((asset) => asset.name.includes("mac_arm64"))?.browser_download_url,
+      macX64: assets.find((asset) => asset.name.includes("mac_x64"))?.browser_download_url,
+      raspberry: assets.find((asset) => asset.name.includes("raspberry"))?.browser_download_url,
+      windows: assets.find((asset) => asset.name.includes("win"))?.browser_download_url,
+    };
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
+}
+
+export default async function HomePage() {
   const btnLinks = {
     github: "https://github.com/ItsRiprod/DeskThing",
     trello: "https://trello.com/b/6v0paxqV/deskthing",
@@ -21,6 +49,8 @@ export default function () {
     bluesky: "https://bsky.app/profile/deskthing.app",
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
   };
+
+  const downloadUrls = await fetchDownloadUrls();
 
   return (
     <>
@@ -183,7 +213,7 @@ export default function () {
           </div>
         </div>
 
-        <Sidebar />
+        <Sidebar downloadUrls={downloadUrls}/>
       </div>
     </>
   );
