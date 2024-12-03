@@ -40,7 +40,7 @@ export default function () {
                   your productivity in the process. Everyone wins.
                 </p>
                 <div className="flex flex-row flex-wrap gap-4">
-                  <BtnArrow label="Get Started" filled />
+                  <BtnArrow to="/" label="Get Started" filled={true} />
                   <BtnArrow to={btnLinks.github} label="Documentation" />
                 </div>
                 <img

@@ -12,8 +12,8 @@ function NavLink({ href, label}) {
 export default function Navbar() {
     const navItems = [
         { href: "/", label: "Home"},
-        { href: "/apps", label: "Apps"},
         { href: "/about", label: "About"},
+        { href: "/apps", label: "Apps"},
         { href: "/supporters", label: "Supporters"},
     ];
 
