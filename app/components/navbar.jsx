@@ -15,7 +15,7 @@ export default function Navbar() {
         { href: "./about", label: "About"},
         { href: "./releases", label: "Releases"},
         { href: "./apps", label: "Apps"},
-        { href: "./supporters", label: "Supporters"},
+        // { href: "./supporters", label: "Supporters"},
     ];
 
     const navList = navItems.map((item, index) => 
@@ -25,7 +25,7 @@ export default function Navbar() {
     return (
         <nav className="z-50 fixed w-screen flex flex-row justify-between items-center py-3 px-6 border-b border-neutral-800 bg-neutral-950/80">
             <div className="flex flex-row gap-5">
-                <a href="/"><LogoSVG /></a>
+                <a href="./"><LogoSVG /></a>
                 <ul className="flex flex-row items-center gap-3">{navList}</ul>
             </div>
             <a href="https://github.com/ItsRiprod/DeskThing" 
