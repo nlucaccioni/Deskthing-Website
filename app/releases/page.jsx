@@ -101,7 +101,7 @@ function ReleasesCard({ release }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-4 w-full">
       <div className="flex flex-col gap-1">
-        <h4 className="font-mono text-green-600">{release.version}</h4>
+        <h4 className="font-mono text-green-600 font-bold">{release.version}</h4>
         <p className="font-medium text-neutral-400 font-mono">
           {new Date(release.releaseDate).toLocaleDateString()}
         </p>

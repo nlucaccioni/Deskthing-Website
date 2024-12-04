@@ -41,10 +41,9 @@ h3 {
 }
 
 h4 {
-    font-family: "Geist", monospace;
+    font-family: "Geist", sans-serif;
     font-size: 2rem;
     line-height: 1;
-    font-weight: 700;
 }
 
 p {

@@ -1,4 +1,5 @@
 import { Download } from 'lucide-react';
+import { ExternalLink} from 'lucide-react';
 
 async function fetchLatestReleasesFromRepos(repos) {
   const baseURL = "https://api.github.com/repos";
@@ -45,16 +46,69 @@ async function fetchLatestReleasesFromRepos(repos) {
   return results;
 }
 
-function AppCard() {
-  <div>
-    <div>
-      <h4>App Name</h4>
-      <p>By Developer Name</p>
-      <p>Description</p>
+function OfficialAppCard() {
+  return (
+    <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
+    bg-neutral-950 hoverDropShadow transition ease-in-out duration-200">
+      <h4 className="text-left w-full font-medium">App Name</h4>
+      <p className="text-left w-full font-mono text-neutral-400 text-sm">
+        By Developer Name
+      </p>
+      <div className="flex flex-row gap-2">
+        <a
+          href="/"
+          className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm 
+          hover:bg-green-600 transition ease-in-out duration-200 hoverDropShadow"
+        >
+          Latest
+          <Download size="20px" />
+        </a>
+        <a
+          href="/"
+          className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm text-neutral-400
+          hover:bg-neutral-50/10 transition ease-in-out duration-200"
+        >
+          App Repo
+          <ExternalLink size="20px" />
+        </a>
+      </div>
     </div>
-      <Download />
+  );
+}
 
-  </div>
+function AppCard() {
+  return (
+    <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
+    bg-neutral-950 hoverDropShadow transition ease-in-out duration-200">
+      <h4 className="text-left w-full font-medium">App Name</h4>
+      <p className="text-left w-full font-mono text-neutral-400 text-sm">
+        By Developer Name
+      </p>
+      <p className="text-left w-full mb-1">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        porttitor fermentum orci, bibendum pretium ipsum blandit posuere. Morbi
+        varius maximus vehicula.
+      </p>
+      <div className="flex flex-row gap-2">
+        <a
+          href="/"
+          className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm 
+          hover:bg-green-600 transition ease-in-out duration-200 hoverDropShadow"
+        >
+          Latest
+          <Download size="20px" />
+        </a>
+        <a
+          href="/"
+          className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm text-neutral-400
+          hover:bg-neutral-50/10 transition ease-in-out duration-200"
+        >
+          App Repo
+          <ExternalLink size="20px" />
+        </a>
+      </div>
+    </div>
+  );
 }
 
 export default function AppPage() {
@@ -78,8 +132,29 @@ export default function AppPage() {
   return (
     <>
       <div className="min-h-svh flex flex-row justify-between pt-nav">
-        <div className="wideContainer flex flex-col mx-auto gap-columnGap items-center">
-          <AppCard />
+        <div className="wideContainer flex flex-col mx-auto gap-columnGap items-center ">
+          <section className="w-full flex flex-col gap-4">
+            <h2>Official Apps</h2>
+            <div className='grid grid-cols-3 gap-4 w-full' >
+            <OfficialAppCard />
+            <OfficialAppCard />
+            <OfficialAppCard />
+            <OfficialAppCard />
+            <OfficialAppCard />
+            <OfficialAppCard />
+            </div>
+          </section>
+          <section className="w-full flex flex-col gap-4">
+            <h2>Community Apps</h2>
+            <div className='grid grid-cols-3 gap-4'>
+            <AppCard />
+            <AppCard />
+            <AppCard />
+            <AppCard />
+            <AppCard />
+            <AppCard />
+            </div>
+          </section>
         </div>
       </div>
     </>
