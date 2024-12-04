@@ -1,6 +1,5 @@
 import Sidebar from "../components/sidebar";
-import { BtnIcon } from "../components/buttons";
-import { BtnArrow } from "../components/buttons";
+import { BtnIcon, BtnArrow } from "../components/buttons";
 import IconCoffee from "../components/assets/icons/Coffee";
 import IconDiscord from "../components/assets/icons/Discord";
 import IconGithub from "../components/assets/icons/GitHub";
@@ -9,6 +8,7 @@ import IconTrello from "../components/assets/icons/Trello";
 import IconYoutube from "../components/assets/icons/Youtube";
 import IconBluesky from "../components/assets/icons/Bluesky";
 import CommunityStats from "../components/communitystats";
+import { OfficialAppCard, AppCard, fetchLatestReleasesFromRepos, fetchOfficialAppsData } from './apps/page';
 
 async function fetchDownloadUrls() {
   const url = `https://api.github.com/repos/itsriprod/deskthing/releases/latest`;
@@ -55,9 +55,31 @@ export default async function HomePage() {
 
   const downloadUrls = await fetchDownloadUrls();
 
+  const repos = [
+    "TylStres/DeskThing-Timer",
+    "dakota-kallas/DeskThing-MarketHub",
+    "RandomDebugGuy/DeskThing-GMP",
+    "Jarsa132/deskthing-volctrl",
+    "espeon/lyrthing",
+    "dakota-kallas/DeskThing-GitHub",
+    "dakota-kallas/DeskThing-SportsHub",
+    "nwo122383/sonos-webapp",
+  ];
+
+  const releases = await fetchLatestReleasesFromRepos(repos);
+  const { appNames, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
+
+  if (!appNames || !releases) {
+    return <div>Error loading apps</div>;
+  }
+
+  // Slice the first 3 apps for each
+  const officialAppsToDisplay = appNames.slice(0, 3); // First 3 official apps
+  const communityAppsToDisplay = releases.slice(0, 3); // First 3 community apps
+
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" style={{display:"none"}}>
+      <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
         <defs>
           <filter id="noise" x="0" y="0" width="100%" height="100%">
             <feTurbulence
@@ -77,6 +99,7 @@ export default async function HomePage() {
       <div className="min-h-svh flex flex-row justify-between pt-nav">
         <div className=" border-r border-neutral-800 w-full">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
+            
             {/* Hero */}
             <section id="hero">
               <div className="flex flex-col gap-4 relative">
@@ -95,19 +118,20 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <img
-                      src="./imgs/DeskThing_Device.png"
-                      alt="Desk Thing Device"
-                      style={{
-                        width: "500px",
-                        right: "-50px",
-                        bottom: "4px",
-                      }}
-                      className="imgDropShadow absolute aspect-auto hover:scale-110 
+                    src="./imgs/DeskThing_Device.png"
+                    alt="Desk Thing Device"
+                    style={{
+                      width: "500px",
+                      right: "-50px",
+                      bottom: "4px",
+                    }}
+                    className="imgDropShadow absolute aspect-auto hover:scale-110 
                       -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
-                    />
+                  />
                 </div>
               </div>
             </section>
+
             {/* Connect */}
             <section id="connect" className="flex flex-row gap-columnGap">
               <div className="basis-1/2 flex flex-col gap-4">
@@ -165,6 +189,7 @@ export default async function HomePage() {
                 </div>
               </div>
             </section>
+
             {/* Community Stats */}
             <section id="stats">
               <h2>Community Stats</h2>
@@ -174,16 +199,42 @@ export default async function HomePage() {
                 <CommunityStats />
               </div>
             </section>
+
             {/* Apps */}
-            <section id="apps">
-              <h2>DeskThing Apps</h2>
-              <p className="characterLimit">
-                Explore core and community-built applications that expand your
-                Car Thing's functionality. From current weather to song lyrics,
-                there's an app for almost every need. And if you want, it's easy
-                to create your own.
-              </p>
+            <section id="apps" className="flex flex-col gap-4">
+              <div>
+                <h2>DeskThing Apps</h2>
+                <p className="characterLimit">
+                  Explore core and community-built applications that expand your
+                  Car Thing's functionality. From current weather to song lyrics,
+                  there's an app for almost every need. And if you want, it's easy
+                  to create your own.
+                </p>
+                </div>
+              <div className="grid grid-cols-3 gap-4 w-full">
+                {officialAppsToDisplay.map((appName, index) => (
+                  <OfficialAppCard
+                    key={index}
+                    appName={appName}
+                    latestReleaseUrl={latestReleaseUrl}
+                    repoUrl={repoUrl}
+                    releaseDate={releaseDate}
+                  />
+                ))}
+                {communityAppsToDisplay.map((release, index) => (
+                  <AppCard
+                    key={index}
+                    appName={release.appName}
+                    authorName={release.authorName}
+                    description={release.description}
+                    latestReleaseUrl={release.latestReleaseUrl}
+                    repoUrl={release.repoUrl}
+                  />
+                ))}
+              </div>
+              <BtnArrow to="./apps" label="Explore more apps"/>
             </section>
+            
             {/* Support */}
             <section id="support">
               <div className="basis-1/2 flex flex-col gap-4">
@@ -216,7 +267,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <Sidebar downloadUrls={downloadUrls}/>
+        <Sidebar downloadUrls={downloadUrls} />
       </div>
     </>
   );

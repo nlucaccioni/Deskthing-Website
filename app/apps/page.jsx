@@ -7,7 +7,7 @@ const titleCase = (str) => {
     .join(' ');
 };
 
-async function fetchOfficialAppsData() {
+export async function fetchOfficialAppsData() {
   const repo = "ItsRiprod/Deskthing-Apps";
   const repoApiUrl = `https://api.github.com/repos/${repo}`;
   const releasesApiUrl = `${repoApiUrl}/releases`;
@@ -55,7 +55,7 @@ async function fetchOfficialAppsData() {
   }
 }
 
-async function fetchLatestReleasesFromRepos(repos) {
+export async function fetchLatestReleasesFromRepos(repos) {
   const fetchRepoData = async (repo) => {
     const repoApiUrl = `https://api.github.com/repos/${repo}`;
     const releasesApiUrl = `${repoApiUrl}/releases`;
@@ -116,7 +116,7 @@ async function fetchLatestReleasesFromRepos(repos) {
   return releaseData.filter(Boolean);
 }
 
-function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
+export function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
@@ -146,7 +146,7 @@ function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
   );
 }
 
-function AppCard({ appName, authorName, description, latestReleaseUrl, repoUrl }) {
+export function AppCard({ appName, authorName, description, latestReleaseUrl, repoUrl }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col justify-between gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
