@@ -72,41 +72,27 @@ function SmallReleaseDownload({ label, url }) {
   );
 }
 
-function LatestReleaseSection({ latestRelease }) {
-  const { platforms, version, releaseDate, releaseNotes } = latestRelease;
-
+function LatestReleaseGrid({ platforms, version }) {
   return (
-    <div className="flex flex-col gap-6">
-      <h2 className="mb-auto">Latest Release</h2>
-      <div className="flex flex-col gap-1">
-        <h3 className="font-mono text-green-600">{version}</h3>
-        <p className="font-medium text-neutral-400 font-mono">
-          {new Date(releaseDate).toLocaleDateString()}
-        </p>
-        <p className="font-medium">{`${version} Release Notes`}</p>
-        <p className="text-sm text-neutral-400 break-words">
-          {releaseNotes}...
-        </p>
-      </div>
-      <div className="grid grid-cols-3 gap-4 w-full">
-        {Object.entries(platforms)
-          .filter(([, url]) => url) // Only show available platforms
-          .map(([platform, url]) => (
-            <a
-              key={platform}
-              href={url}
-              className="p-6 border border-neutral-800 rounded-lg flex flex-row justify-between items-center bg-neutral-950 hoverDropShadow hover:text-green-600"
-            >
-              <div>
-                <h3 className="font-sans font-medium text-3xl text-neutral-50">
-                  {platform}
-                </h3>
-                <p className="font-mono text-neutral-400">v{version}</p>
-              </div>
-              <Download size="2rem" />
-            </a>
-          ))}
-      </div>
+    <div className="grid grid-cols-3 gap-4 w-full">
+      {Object.entries(platforms)
+        .filter(([, url]) => url)
+        .map(([platform, url]) => (
+          <a
+            key={platform}
+            href={url}
+            className="p-6 border border-neutral-800 rounded-lg flex flex-row justify-between 
+            items-center bg-neutral-950 hoverDropShadow hover:text-green-600 transform ease-in-out duration-200" 
+          >
+            <div>
+              <h3 className="font-sans font-medium text-3xl text-neutral-50">
+                {platform}
+              </h3>
+              <p className="font-mono text-neutral-400">v{version}</p>
+            </div>
+            <Download size="2rem" />
+          </a>
+        ))}
     </div>
   );
 }
@@ -137,16 +123,35 @@ export default async function ReleasesPage() {
   const latestRelease = releases[0];
   const previousReleases = releases.slice(1);
 
+  const getPreviewNotes = (notes, charLimit = 200) => {
+    if (!notes) return '';
+    return notes.length > charLimit ? `${notes.slice(0, charLimit)}...` : notes;
+  };
+
   return (
     <div className="min-h-svh flex flex-row justify-between pt-nav">
       <div className="wideContainer flex flex-col mx-auto gap-6">
-        {/* Latest Release Section */}
-        {latestRelease && <LatestReleaseSection latestRelease={latestRelease} />}
+        {latestRelease && (
+          <>
+            <h2 className="mb-auto">Latest Release</h2>
+            <div className="flex flex-col gap-1 -mt-3">
+              <h3 className="font-mono text-green-600">{latestRelease.version}</h3>
+              <p className="font-medium text-neutral-400 font-mono">
+                {new Date(latestRelease.releaseDate).toLocaleDateString()}
+              </p>
+              <p className="font-medium">{`${latestRelease.version} Release Notes`}</p>
+              <p className="text-sm text-neutral-400 break-words characterLimit">
+                {latestRelease.releaseNotes}
+              </p>
+            </div>
+            <LatestReleaseGrid
+              platforms={latestRelease.platforms}
+              version={latestRelease.version}
+            />
+          </>
+        )}
 
-        {/* Previous Releases */}
-        <h2 id="previousreleases" className="mb-auto mt-4">
-          Previous Releases
-        </h2>
+        <h2 id="previousreleases" className="mb-auto mt-4 scroll-mt-[8rem]">Previous Releases</h2>
         <div className="grid grid-cols-3 gap-4 w-full">
           {previousReleases.map((release, index) => (
             <ReleasesCard key={index} release={release} />
