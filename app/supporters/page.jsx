@@ -154,7 +154,7 @@ export default function SupportersPage() {
   return (
     <>
       <div className="min-h-svh flex flex-row justify-between pt-nav">
-        <div className="supportersContainer flex flex-col mx-auto gap-columnGap items-center">
+        <div className="wideContainer flex flex-col mx-auto gap-columnGap items-center">
           <p className="text-center characterLimit">
             Thanks to all of these amazing people I am able to pull development
             nights well into the AMs!

@@ -21,7 +21,7 @@ export default function Sidebar({ downloadUrls }) {
             <BtnIcon to={downloadUrls.linuxAppImage} label="Linux" icon={<IconLinux/>}/>
             <BtnIcon to={downloadUrls.raspberry} label="Rasberry" icon={<IconRasberry/>}/>
             <hr className="border-neutral-800"></hr>
-            <BtnArrow to="./releases" label="Previous Releases"/>
+            <BtnArrow to="./releases#previousreleases" label="Previous Releases"/>
         </aside>
     )
 }
