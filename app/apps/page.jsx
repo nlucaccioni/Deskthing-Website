@@ -119,7 +119,7 @@ async function fetchLatestReleasesFromRepos(repos) {
 function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
-    bg-neutral-950 hoverDropShadow transition ease-in-out duration-200">
+    bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
       <h4 className="text-left w-full font-medium">{appName}</h4>
       <p className="text-left w-full font-mono text-neutral-400 text-sm">
         {releaseDate}
@@ -149,7 +149,7 @@ function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
 function AppCard({ appName, authorName, description, latestReleaseUrl, repoUrl }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col justify-between gap-2
-    bg-neutral-950 hoverDropShadow transition ease-in-out duration-200">
+    bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
       <div className='flex flex-col gap-2'>
         <h5 className="text-left text-2xl w-full font-medium text-green-600">{appName}</h5>
         <p className="text-left w-full font-mono text-neutral-400 text-sm">

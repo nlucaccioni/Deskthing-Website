@@ -29,6 +29,11 @@ module.exports = {
         '101': '1.01',
         '102': '1.02',
       },
+      colors: {
+        neutral: {
+          925: '#0f0f0f',
+        }
+      }
     },
   },
   plugins: [],
