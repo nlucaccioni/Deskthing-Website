@@ -15,16 +15,19 @@ async function fetchDownloadUrls() {
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 }, // Revalidate cache every hour
+      next: { revalidate: 3600 },
     });
+
     if (!response.ok) {
       throw new Error(`Error fetching releases: ${response.statusText}`);
     }
 
     const release = await response.json();
     const assets = release.assets;
+    const latestVersion = release.tag_name;  
 
     return {
+      latestVersion,
       linuxDeb: assets.find((asset) => asset.name.includes("amd64") && asset.name.endsWith(".deb"))?.browser_download_url,
       linuxAppImage: assets.find((asset) => asset.name.includes("linux") && asset.name.endsWith(".AppImage"))?.browser_download_url,
       macArm64: assets.find((asset) => asset.name.includes("mac_arm64"))?.browser_download_url,
