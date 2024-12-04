@@ -1,14 +1,14 @@
-import Sidebar from "./components/sidebar";
-import { BtnIcon } from "./components/buttons";
-import { BtnArrow } from "./components/buttons";
-import IconCoffee from "./assets/icons/Coffee";
-import IconDiscord from "./assets/icons/Discord";
-import IconGithub from "./assets/icons/GitHub";
-import IconReddit from "./assets/icons/Reddit";
-import IconTrello from "./assets/icons/Trello";
-import IconYoutube from "./assets/icons/Youtube";
-import IconBluesky from "./assets/icons/Bluesky";
-import CommunityStats from "./components/communitystats";
+import Sidebar from "../components/sidebar";
+import { BtnIcon } from "../components/buttons";
+import { BtnArrow } from "../components/buttons";
+import IconCoffee from "../components/assets/icons/Coffee";
+import IconDiscord from "../components/assets/icons/Discord";
+import IconGithub from "../components/assets/icons/GitHub";
+import IconReddit from "../components/assets/icons/Reddit";
+import IconTrello from "../components/assets/icons/Trello";
+import IconYoutube from "../components/assets/icons/Youtube";
+import IconBluesky from "../components/assets/icons/Bluesky";
+import CommunityStats from "../components/communitystats";
 
 async function fetchDownloadUrls() {
   const url = `https://api.github.com/repos/itsriprod/deskthing/releases/latest`;

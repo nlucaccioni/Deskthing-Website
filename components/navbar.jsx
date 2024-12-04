@@ -1,4 +1,4 @@
-import LogoSVG from "../assets/Logo";
+import LogoSVG from "../components/assets/Logo";
 import { Github } from 'lucide-react';
 
 

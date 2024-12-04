@@ -1,9 +1,9 @@
-import IconCoffee from "../assets/icons/Coffee";
-import IconDiscord from "../assets/icons/Discord";
-import IconGithub from "../assets/icons/GitHub";
-import IconReddit from "../assets/icons/Reddit";
-import IconTrello from "../assets/icons/Trello";
-import IconYoutube from "../assets/icons/Youtube";
+import IconCoffee from "../components/assets/icons/Coffee";
+import IconDiscord from "../components/assets/icons/Discord";
+import IconGithub from "../components/assets/icons/GitHub";
+import IconReddit from "../components/assets/icons/Reddit";
+import IconTrello from "../components/assets/icons/Trello";
+import IconYoutube from "../components/assets/icons/Youtube";
 
 
 function VertLine () {

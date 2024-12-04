@@ -1,4 +1,4 @@
-import MiniArrowRight from "../assets/icons/MiniArrow_Right"
+import MiniArrowRight from "../components/assets/icons/MiniArrow_Right"
 
 function BtnIcon({ to, icon, label }) {
     return (

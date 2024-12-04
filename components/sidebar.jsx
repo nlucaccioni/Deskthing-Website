@@ -1,9 +1,9 @@
 import { BtnIcon } from '../components/buttons';
 import { BtnArrow } from '../components/buttons';
-import IconApple from "../assets/icons/Apple";
-import IconWindows from "../assets/icons/Windows";
-import IconLinux from "../assets/icons/Ubuntu";
-import IconRasberry from "../assets/icons/Rasberry";
+import IconApple from "../components/assets/icons/Apple";
+import IconWindows from "../components/assets/icons/Windows";
+import IconLinux from "../components/assets/icons/Ubuntu";
+import IconRasberry from "../components/assets/icons/Rasberry";
 
 
 export default function Sidebar({ downloadUrls }) {
