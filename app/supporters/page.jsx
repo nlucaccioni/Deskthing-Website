@@ -1,6 +1,6 @@
-import { BtnIcon } from "../components/buttons";
-import IconCoffee from "../assets/icons/Coffee";
-import IconGithub from "../assets/icons/GitHub";
+import { BtnIcon } from "../../components/buttons";
+import IconCoffee from "../../components/assets/icons/Coffee";
+import IconGithub from "../../components/assets/icons/GitHub";
 
 // Dummy Data
 const data = {
