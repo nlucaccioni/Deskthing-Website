@@ -79,65 +79,46 @@ export default async function HomePage() {
 
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-        <defs>
-          <filter id="noise" x="0" y="0" width="100%" height="100%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.1"
-              numOctaves="2"
-              result="noise"
-            />
-            <feDiffuseLighting
-              in="noise"
-              lightingColor="white"
-              surfaceScale="1"
-            />
-          </filter>
-        </defs>
-      </svg>
-      <div className="min-h-svh flex flex-row justify-between pt-nav">
-        <div className=" border-r border-neutral-800 w-full">
+      <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 xl:mx-0">
+        <div className="lg:border-r border-neutral-800 w-full lg:pr-6 xl:px-6 2xl:px-0">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
-            
             {/* Hero */}
             <section id="hero">
-              <div className="flex flex-col gap-4 relative">
-                <h1 className="text-green-600">
-                  Take Back the <br />
-                  Car Thing
-                </h1>
-                <p style={{ maxWidth: "50ch" }}>
-                  Upcycle your discontinued Car Thing into a versatile desktop
-                  assistant that enhances your flow. Reduce e-waste and boost
-                  your productivity in the process. Everyone wins.
-                </p>
-                <div className="flex flex-row flex-wrap gap-4">
-                  <BtnArrow to="/" label="Get Started" filled={true} />
-                  <BtnArrow to={btnLinks.github} label="Documentation" />
+              <div className="flex flex-col-reverse gap-4 relative">
+                <div className="flex flex-col gap-4">
+                  <h1 className="text-green-600 text-balance">
+                    Take Back the Car Thing
+                  </h1>
+                  <p className="max-w-[50ch]">
+                    Upcycle your discontinued Car Thing into a versatile desktop
+                    assistant that enhances your flow. Reduce e-waste and boost
+                    your productivity in the process. Everyone wins.
+                  </p>
+                  <div className="flex flex-row flex-wrap gap-4">
+                    <BtnArrow to="/" label="Get Started" filled={true} />
+                    <BtnArrow to={btnLinks.github} label="Documentation" />
+                  </div>
                 </div>
                 <div>
-                  <img
-                    src="./imgs/DeskThing_Device.png"
-                    alt="Desk Thing Device"
-                    style={{
-                      width: "500px",
-                      right: "-50px",
-                      bottom: "4px",
-                    }}
-                    className="imgDropShadow absolute aspect-auto hover:scale-110 
-                      -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
-                  />
-                </div>
+                    <img
+                      src="./imgs/DeskThing_Device.png"
+                      alt="Desk Thing Device"
+                      className="justify-self-center pt-4 pb-[60px] md:w-[80vw] lg:w-[450px] xl:py-0 xl:absolute bottom-[20px] xl:right-[0px] 2xl:bottom-[4px] 2xl:right-[-50px] 2xl:w-[500px] 
+                      imgDropShadow aspect-auto hover:scale-110 -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
+                    />
+                  </div>
               </div>
             </section>
 
             {/* Connect */}
-            <section id="connect" className="flex flex-row gap-columnGap">
+            <section
+              id="connect"
+              className=" flex flex-col lg:flex-row gap-columnGap"
+            >
               <div className="basis-1/2 flex flex-col gap-4">
                 <div>
                   <h2>Connect with the Community!</h2>
-                  <p>
+                  <p className="characterLimit text-balance lg:text-wrap">
                     Have a question or idea? Join our community to help shape
                     the future of DeskThing—share your insights, connect with
                     others, and make an impact!
@@ -169,7 +150,7 @@ export default async function HomePage() {
               <div className="basis-1/2 flex flex-col gap-4">
                 <div>
                   <h2>Follow Development</h2>
-                  <p>
+                  <p className="characterLimit text-balance lg:text-wrap">
                     Stay connected and keep up with the latest development
                     releases. Be sure to check out our Trello board to explore
                     our roadmap and see the exciting features we have planned.
@@ -193,7 +174,7 @@ export default async function HomePage() {
             {/* Community Stats */}
             <section id="stats">
               <h2>Community Stats</h2>
-              <div className="flex flex-row gap-4 items-stretch">
+              <div className="flex flex-col md:flex-row gap-4 items-stretch">
                 <CommunityStats />
                 <CommunityStats />
                 <CommunityStats />
@@ -204,14 +185,14 @@ export default async function HomePage() {
             <section id="apps" className="flex flex-col gap-4">
               <div>
                 <h2>DeskThing Apps</h2>
-                <p className="characterLimit">
+                <p className="characterLimit text-pretty">
                   Explore core and community-built applications that expand your
-                  Car Thing's functionality. From current weather to song lyrics,
-                  there's an app for almost every need. And if you want, it's easy
-                  to create your own.
+                  Car Thing's functionality. From current weather to song
+                  lyrics, there's an app for almost every need. And if you want,
+                  it's easy to create your own.
                 </p>
-                </div>
-              <div className="grid grid-cols-3 gap-4 w-full">
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
                 {officialAppsToDisplay.map((appName, index) => (
                   <OfficialAppCard
                     key={index}
@@ -232,9 +213,9 @@ export default async function HomePage() {
                   />
                 ))}
               </div>
-              <BtnArrow to="./apps" label="Explore more apps"/>
+              <BtnArrow to="./apps" label="Explore more apps" />
             </section>
-            
+
             {/* Support */}
             <section id="support">
               <div className="basis-1/2 flex flex-col gap-4">

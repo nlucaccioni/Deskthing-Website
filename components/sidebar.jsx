@@ -9,7 +9,7 @@ import IconRasberry from "../components/assets/icons/Rasberry";
 export default function Sidebar({ downloadUrls }) {
 
     return (
-        <aside className="p-6 flex flex-col gap-4 w-sidebar sticky top-nav h-full">
+        <aside className="p-6 hidden lg:flex flex-col gap-4 w-sidebar sticky top-nav h-full">
             <div>
                 <h4 className="font-bold text-xl mb-1">Latest Release</h4>
                 <p className="font-mono text-neutral-400 leading-3">{downloadUrls.latestVersion}</p>

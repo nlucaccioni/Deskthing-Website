@@ -32,7 +32,7 @@ export default function Footer(){
     };
 
     return (
-        <footer className="flex flex-row justify-between items-center py-3 px-6 border-t border-neutral-800 bg-neutral-950">
+        <footer className="flex flex-col sm:flex-row justify-between gap-2 sm:items-center py-3 px-6 border-t border-neutral-800 bg-neutral-950">
             <p className="text-xs text-neutral-300">©2024 DeskThing Contributors</p>
             <div className="flex flex-row gap-2">
                 <IconButton to={links.github} icon={<IconGithub/>}/>

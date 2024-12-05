@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
     <>
-      <div className="min-h-svh flex flex-row justify-between pt-nav">
+      <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 xl:mx-0">
         <div className="mainContainer flex flex-col mx-auto gap-columnGap">
           <h1 className="text-green-600">
             About <br />

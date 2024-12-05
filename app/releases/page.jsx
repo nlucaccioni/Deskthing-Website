@@ -74,7 +74,7 @@ function SmallReleaseDownload({ label, url }) {
 
 function LatestReleaseGrid({ platforms, version }) {
   return (
-    <div className="grid grid-cols-3 gap-4 w-full">
+    <>
       {Object.entries(platforms)
         .filter(([, url]) => url)
         .map(([platform, url]) => (
@@ -88,12 +88,12 @@ function LatestReleaseGrid({ platforms, version }) {
               <h3 className="font-sans font-medium text-3xl text-neutral-50">
                 {platform}
               </h3>
-              <p className="font-mono text-neutral-400">v{version}</p>
+              <p className="font-mono text-neutral-400">{version}</p>
             </div>
             <Download size="2rem" />
           </a>
         ))}
-    </div>
+    </>
   );
 }
 
@@ -129,7 +129,7 @@ export default async function ReleasesPage() {
   };
 
   return (
-    <div className="min-h-svh flex flex-row justify-between pt-nav">
+    <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 2xl:mx-0">
       <div className="wideContainer flex flex-col mx-auto gap-6">
         {latestRelease && (
           <>
@@ -144,15 +144,17 @@ export default async function ReleasesPage() {
                 {latestRelease.releaseNotes}
               </p>
             </div>
-            <LatestReleaseGrid
-              platforms={latestRelease.platforms}
-              version={latestRelease.version}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+              <LatestReleaseGrid
+                platforms={latestRelease.platforms}
+                version={latestRelease.version}
+              />
+            </div>
           </>
         )}
 
         <h2 id="previousreleases" className="mb-auto mt-4 scroll-mt-[8rem]">Previous Releases</h2>
-        <div className="grid grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 w-full">
           {previousReleases.map((release, index) => (
             <ReleasesCard key={index} release={release} />
           ))}

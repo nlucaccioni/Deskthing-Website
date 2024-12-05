@@ -110,7 +110,7 @@ function SupportersSection({ supporters }) {
   return (
     <section>
       <h2>Caffeine Addiction Supporters</h2>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {supporters.map((supporter) => (
           <div key={supporter.support_id} className={cardStyle}>
             <h4 className={nameStyle}>{supporter.payer_name || "Anonymous"}</h4>
@@ -130,7 +130,7 @@ function SubscribersSection({ subscribers }) {
   return (
     <section>
       <h2>Caffeine Addiction Subscribers</h2>
-      <div className="grid grid-cols-3 gap-5 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
         {subscribers.map((subscriber) => (
           <div key={subscriber.subscription_id} className={cardStyle}>
             <h4 className={nameStyle}>
@@ -153,9 +153,9 @@ function SubscribersSection({ subscribers }) {
 export default function SupportersPage() {
   return (
     <>
-      <div className="min-h-svh flex flex-row justify-between pt-nav">
+      <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 2xl:mx-0">
         <div className="wideContainer flex flex-col mx-auto gap-columnGap items-center">
-          <p className="text-center characterLimit">
+          <p className="text-center characterLimit text-balance lg:text-wrap">
             Thanks to all of these amazing people I am able to pull development
             nights well into the AMs!
             <br />
@@ -171,7 +171,7 @@ export default function SupportersPage() {
               DeskThing! Whether its in new supplied or some coffee to help burn
               the midnight oil.
             </p>
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
               <BtnIcon
                 to="https://buymeacoffee.com/riprod"
                 label="Buy Me a Coffee"
