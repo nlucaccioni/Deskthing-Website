@@ -94,7 +94,7 @@ export default async function HomePage() {
                     assistant that enhances your flow. Reduce e-waste and boost
                     your productivity in the process. Everyone wins.
                   </p>
-                  <div className="flex flex-row flex-wrap gap-4">
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                     <BtnArrow to="/" label="Get Started" filled={true} />
                     <BtnArrow to={btnLinks.github} label="Documentation" />
                   </div>
@@ -113,7 +113,7 @@ export default async function HomePage() {
             {/* Connect */}
             <section
               id="connect"
-              className=" flex flex-col lg:flex-row gap-columnGap"
+              className=" flex flex-col lg:flex-row gap-sectionGap lg:gap-columnGap"
             >
               <div className="basis-1/2 flex flex-col gap-4">
                 <div>
