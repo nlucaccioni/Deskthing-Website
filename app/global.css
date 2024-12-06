@@ -55,7 +55,7 @@ h4 {
 
 p {
     font-weight: 300;
-    font-wrap: pretty;
+    text-wrap: pretty;
 }
 
 .imgDropShadow {

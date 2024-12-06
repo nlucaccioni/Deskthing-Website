@@ -7,6 +7,7 @@ import IconReddit from "../components/assets/icons/Reddit";
 import IconTrello from "../components/assets/icons/Trello";
 import IconYoutube from "../components/assets/icons/Youtube";
 import IconBluesky from "../components/assets/icons/Bluesky";
+import IconTwitter from "../components/assets/icons/Xtwitter";
 import CommunityStats from "../components/communitystats";
 import { OfficialAppCard, AppCard, fetchLatestReleasesFromRepos, fetchOfficialAppsData } from './apps/page';
 
@@ -50,6 +51,7 @@ export default async function HomePage() {
     youtube: "https://www.youtube.com/@deskthing",
     coffee: "https://buymeacoffee.com/riprod",
     bluesky: "https://bsky.app/profile/deskthing.app",
+    twitter: "https://x.com/TheDeskThing",
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
   };
 
@@ -82,11 +84,12 @@ export default async function HomePage() {
       <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 xl:mx-0">
         <div className="lg:border-r border-neutral-800 w-full lg:pr-6 xl:px-6 2xl:px-0">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
+            
             {/* Hero */}
             <section id="hero">
               <div className="flex flex-col-reverse gap-4 relative">
                 <div className="flex flex-col gap-4">
-                  <h1 className="text-green-600 text-balance">
+                  <h1 className="text-green-600 max-w-[13ch] text-balance xl:text-wrap">
                     Take Back the Car Thing
                   </h1>
                   <p className="max-w-[50ch]">
@@ -95,7 +98,7 @@ export default async function HomePage() {
                     your productivity in the process. Everyone wins.
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                    <BtnArrow to="/" label="Get Started" filled={true} />
+                    {/* <BtnArrow to="/" label="Get Started" filled={true} /> */}
                     <BtnArrow to={btnLinks.github} label="Documentation" />
                   </div>
                 </div>
@@ -144,6 +147,11 @@ export default async function HomePage() {
                     to={btnLinks.bluesky}
                     label="BlueSky"
                     icon={<IconBluesky />}
+                  />
+                  <BtnIcon
+                    to={btnLinks.twitter}
+                    label="Twitter"
+                    icon={<IconTwitter />}
                   />
                 </div>
               </div>

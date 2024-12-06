@@ -16,6 +16,7 @@ export async function fetchOfficialAppsData() {
     // Fetch release data
     const releaseResponse = await fetch(releasesApiUrl, {
       headers: { Accept: "application/vnd.github+json" },
+      next: { revalidate: 3600 },
     });
 
     if (!releaseResponse.ok) {
@@ -44,10 +45,10 @@ export async function fetchOfficialAppsData() {
     }).filter(Boolean); // Filter out null values in case of unmatched assets
 
     return {
-      appNames, // List of app names
-      latestReleaseUrl, // Latest release URL for all apps
-      repoUrl, // Repo URL for all apps
-      releaseDate: new Date(date).toLocaleDateString(), // Convert release date to a human-readable format
+      appNames,
+      latestReleaseUrl, 
+      repoUrl, 
+      releaseDate: new Date(date).toLocaleDateString(), 
     };
   } catch (error) {
     console.error(`Error fetching data for ${repo}:`, error);
@@ -55,6 +56,7 @@ export async function fetchOfficialAppsData() {
   }
 }
 
+//fetch community apps
 export async function fetchLatestReleasesFromRepos(repos) {
   const fetchRepoData = async (repo) => {
     const repoApiUrl = `https://api.github.com/repos/${repo}`;
