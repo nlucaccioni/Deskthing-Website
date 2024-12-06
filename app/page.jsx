@@ -10,6 +10,41 @@ import IconBluesky from "../components/assets/icons/Bluesky";
 import IconTwitter from "../components/assets/icons/Xtwitter";
 import CommunityStats from "../components/communitystats";
 import { OfficialAppCard, AppCard, fetchLatestReleasesFromRepos, fetchOfficialAppsData } from './apps/page';
+import { data } from "autoprefixer";
+
+async function fetchTotalDownloadsFromRepo(repo) {
+  const releasesApiUrl = `https://api.github.com/repos/${repo}/releases`;
+
+  try {
+    const response = await fetch(releasesApiUrl, {
+      headers: { Accept: "application/vnd.github+json" },
+      next: { revalidate: 3600 }, // ISR: revalidate every hour
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch releases for ${repo}: ${response.statusText}`);
+    }
+
+    const releases = await response.json();
+
+    // Calculate the total download count from all releases
+    const totalDownloads = releases.reduce((total, release) => {
+      const releaseDownloads = release.assets.reduce((sum, asset) => sum + asset.download_count, 0);
+      return total + releaseDownloads;
+    }, 0);
+
+    return { repo, totalDownloads }; // Return both repo name and download count
+  } catch (error) {
+    console.error(error);
+    return { repo, totalDownloads: 0 }; // Return 0 as fallback in case of error
+  }
+}
+
+// Function to fetch total downloads from multiple repositories
+async function fetchTotalDownloadsFromRepos(repos) {
+  const downloadCounts = await Promise.all(repos.map(fetchTotalDownloadsFromRepo));
+  return downloadCounts; // Return array of download counts for each repo
+}
 
 async function fetchDownloadUrls() {
   const url = `https://api.github.com/repos/itsriprod/deskthing/releases/latest`;
@@ -42,6 +77,7 @@ async function fetchDownloadUrls() {
   }
 }
 
+
 export default async function HomePage() {
   const btnLinks = {
     github: "https://github.com/ItsRiprod/DeskThing",
@@ -57,6 +93,8 @@ export default async function HomePage() {
 
   const downloadUrls = await fetchDownloadUrls();
 
+  const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
+
   const repos = [
     "TylStres/DeskThing-Timer",
     "dakota-kallas/DeskThing-MarketHub",
@@ -68,6 +106,13 @@ export default async function HomePage() {
     "nwo122383/sonos-webapp",
   ];
 
+  const downloadData = await Promise.all(
+    statRepos.map(async (repo) => {
+      const { repo: repoName, totalDownloads } = await fetchTotalDownloadsFromRepo(repo);
+      return { repo: repoName, totalDownloads }; 
+    })
+  );
+
   const releases = await fetchLatestReleasesFromRepos(repos);
   const { appNames, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
 
@@ -78,6 +123,9 @@ export default async function HomePage() {
   // Slice the first 3 apps for each
   const officialAppsToDisplay = appNames.slice(0, 3); // First 3 official apps
   const communityAppsToDisplay = releases.slice(0, 3); // First 3 community apps
+
+  const deskthingDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing")?.totalDownloads || 0;
+  const deskthingAppsDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing-apps")?.totalDownloads || 0;
 
   return (
     <>
@@ -106,7 +154,7 @@ export default async function HomePage() {
                     <img
                       src="./imgs/DeskThing_Device.png"
                       alt="Desk Thing Device"
-                      className="justify-self-center pt-4 pb-[60px] md:w-[80vw] lg:w-[450px] xl:py-0 xl:absolute bottom-[20px] xl:right-[0px] 2xl:bottom-[4px] 2xl:right-[-50px] 2xl:w-[500px] 
+                      className="justify-self-center pt-4 pb-[60px] w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[450px] 2xl:w-[500px] xl:py-0 xl:absolute bottom-[20px] xl:right-[0px] 2xl:bottom-[4px] 2xl:right-[-50px]  
                       imgDropShadow aspect-auto hover:scale-110 -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
                     />
                   </div>
@@ -183,9 +231,10 @@ export default async function HomePage() {
             <section id="stats">
               <h2>Community Stats</h2>
               <div className="flex flex-col md:flex-row gap-4 items-stretch">
-                <CommunityStats />
-                <CommunityStats />
-                <CommunityStats />
+              
+                <CommunityStats stat={deskthingDownloads.toLocaleString()} label="Server Downloads"/>
+                <CommunityStats stat={deskthingAppsDownloads.toLocaleString()} label="App Downloads"/>
+                <CommunityStats stat="2,678" label="Discord Memebers"/>
               </div>
             </section>
 
