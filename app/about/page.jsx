@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'DeskThing | About',
+}
+
 export default function AboutPage() {
   return (
     <>

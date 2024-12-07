@@ -6,10 +6,9 @@ export async function fetchOfficialAppsData() {
   const releasesApiUrl = `${repoApiUrl}/releases`;
 
   try {
-    // Fetch release data
     const releaseResponse = await fetch(releasesApiUrl, {
       headers: { Accept: "application/vnd.github+json" },
-      next: { revalidate: 3600 },
+      next: { revalidate: 3600 }, // ISR: revalidate every hour
     });
 
     if (!releaseResponse.ok) {

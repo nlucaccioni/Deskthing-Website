@@ -1,6 +1,10 @@
 import { fetchCommunityReleasesFromRepos, fetchOfficialAppsData } from '../../services';
 import { OfficialAppCard, AppCard } from '../../components/appCards';
 
+export const metadata = {
+  title: 'DeskThing | Apps',
+  description: 'Explore core and community-built applications that expand your Car Thing\'s functionality.',
+}
 
 export default async function AppPage() {
   // Repos to pull for Community Apps

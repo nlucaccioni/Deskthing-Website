@@ -13,6 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
       <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
+        <link rel="icon" href="imgs/AppIcon.png" />
         <body className="bg-neutral-950 text-neutral-50">
           <Navbar />
           {children}

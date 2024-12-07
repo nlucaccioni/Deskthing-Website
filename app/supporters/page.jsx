@@ -2,6 +2,10 @@ import { BtnIcon } from "../../components/buttons";
 import IconCoffee from "../../components/assets/icons/Coffee";
 import IconGithub from "../../components/assets/icons/GitHub";
 
+export const metadata = {
+  title: 'DeskThing | About',
+}
+
 // Dummy Data
 const data = {
   supporters: [

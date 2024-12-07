@@ -1,0 +1,20 @@
+{
+    "name": "DeskThing",
+    "short_name": "DeskThing",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "description": "The DeskThing client",
+    "icons": [
+      {
+        "src": "images/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "imgs/png"
+      },
+      {
+        "src": "images/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "imgs/png"
+      }
+    ]
+  }

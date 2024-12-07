@@ -3,7 +3,7 @@ export async function fetchServerReleases() {
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 }, // Revalidate cache every hour
+      next: { revalidate: 3600 }, // ISR: revalidate every hour
     });
 
     if (!response.ok) {

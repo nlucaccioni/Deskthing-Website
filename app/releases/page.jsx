@@ -1,6 +1,10 @@
 import { Download } from 'lucide-react';
 import { fetchServerReleases } from '../../services';
 
+export const metadata = {
+  title: 'DeskThing | Releases',
+}
+
 
 function SmallReleaseDownload({ label, url }) {
   return (
