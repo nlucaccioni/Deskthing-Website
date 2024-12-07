@@ -3,4 +3,7 @@ const nextConfig = {
   basePath: '/Deskthing-Website', // Adjust this to your repo name
 };
 
-module.exports = nextConfig;
+module.exports = {
+  output: "export",
+  nextConfig,
+};

@@ -18,6 +18,12 @@ const redirects = {
   },
 };
 
+export async function generateStaticParams() {
+  return Object.keys(redirects).map((key) => ({
+    slug: key,
+  }));
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params; // Await the params object
 
