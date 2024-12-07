@@ -1,64 +1,6 @@
 import { Download } from 'lucide-react';
+import { fetchServerReleases } from '../../services';
 
-async function fetchAllReleases() {
-  const url = `https://api.github.com/repos/itsriprod/deskthing/releases`;
-
-  try {
-    const response = await fetch(url, {
-      next: { revalidate: 3600 }, // Revalidate cache every hour
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error fetching releases: ${response.statusText}`);
-    }
-
-    const releases = await response.json();
-
-    // Extract required data from each release and filter by asset name containing "deskthing"
-    return releases
-      .map((release) => {
-        const assets = release.assets.filter((asset) =>
-          asset.name.toLowerCase().includes("deskthing")
-        );
-
-        if (assets.length === 0) return null; // Skip releases with no "deskthing" assets
-
-        // Raw file names and URLs
-        const rawFiles = assets.map((asset) => ({
-          name: asset.name,
-          url: asset.browser_download_url,
-        }));
-
-        return {
-          version: release.tag_name,
-          releaseDate: release.published_at,
-          releaseNotes: release.body,
-          rawFiles,
-          platforms: {
-            linuxDeb: assets.find(
-              (asset) => asset.name.includes("amd64") && asset.name.endsWith(".deb")
-            )?.browser_download_url,
-            linuxAppImage: assets.find(
-              (asset) =>
-                asset.name.includes("linux") && asset.name.endsWith(".AppImage")
-            )?.browser_download_url,
-            macArm64: assets.find((asset) => asset.name.includes("mac_arm64"))
-              ?.browser_download_url,
-            macX64: assets.find((asset) => asset.name.includes("mac_x64"))
-              ?.browser_download_url,
-            raspberry: assets.find((asset) => asset.name.includes("raspberry"))
-              ?.browser_download_url,
-            windows: assets.find((asset) => asset.name.includes("win"))
-              ?.browser_download_url,
-          },
-        };
-      })
-      .filter(Boolean); // Remove null entries
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
 
 function SmallReleaseDownload({ label, url }) {
   return (
@@ -69,31 +11,6 @@ function SmallReleaseDownload({ label, url }) {
       <Download size="14" strokeWidth="3" />
       <p className="font-medium">{label}</p>
     </a>
-  );
-}
-
-function LatestReleaseGrid({ platforms, version }) {
-  return (
-    <>
-      {Object.entries(platforms)
-        .filter(([, url]) => url)
-        .map(([platform, url]) => (
-          <a
-            key={platform}
-            href={url}
-            className="p-6 border border-neutral-800 rounded-lg flex flex-row justify-between 
-            items-center bg-neutral-925 hoverDropShadow hover:text-green-600 transform ease-in-out duration-200" 
-          >
-            <div>
-              <h3 className="font-sans font-medium text-3xl text-neutral-50">
-                {platform}
-              </h3>
-              <p className="font-mono text-neutral-400">{version}</p>
-            </div>
-            <Download size="2rem" />
-          </a>
-        ))}
-    </>
   );
 }
 
@@ -119,7 +36,7 @@ function ReleasesCard({ release }) {
 }
 
 export default async function ReleasesPage() {
-  const releases = await fetchAllReleases();
+  const releases = await fetchServerReleases();
   const latestRelease = releases[0];
   const previousReleases = releases.slice(1);
 
@@ -135,7 +52,9 @@ export default async function ReleasesPage() {
           <>
             <h2 className="mb-auto">Latest Release</h2>
             <div className="flex flex-col gap-1 -mt-3">
-              <h3 className="font-mono text-green-600">{latestRelease.version}</h3>
+              <h3 className="font-mono text-green-600">
+                {latestRelease.version}
+              </h3>
               <p className="font-medium text-neutral-400 font-mono">
                 {new Date(latestRelease.releaseDate).toLocaleDateString()}
               </p>
@@ -145,15 +64,33 @@ export default async function ReleasesPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-              <LatestReleaseGrid
-                platforms={latestRelease.platforms}
-                version={latestRelease.version}
-              />
+              {Object.entries(latestRelease.platforms)
+                .filter(([, url]) => url)
+                .map(([platform, url]) => (
+                  <a
+                    key={platform}
+                    href={url}
+                    className="p-6 border border-neutral-800 rounded-lg flex flex-row justify-between 
+            items-center bg-neutral-925 hoverDropShadow hover:text-green-600 transform ease-in-out duration-200"
+                  >
+                    <div>
+                      <h3 className="font-sans font-medium text-3xl text-neutral-50">
+                        {platform}
+                      </h3>
+                      <p className="font-mono text-neutral-400">
+                        {latestRelease.version}
+                      </p>
+                    </div>
+                    <Download size="2rem" />
+                  </a>
+                ))}
             </div>
           </>
         )}
 
-        <h2 id="previousreleases" className="mb-auto mt-4 scroll-mt-[8rem]">Previous Releases</h2>
+        <h2 id="previousreleases" className="mb-auto mt-4 scroll-mt-[8rem]">
+          Previous Releases
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 w-full">
           {previousReleases.map((release, index) => (
             <ReleasesCard key={index} release={release} />

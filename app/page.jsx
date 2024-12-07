@@ -1,81 +1,24 @@
 import Sidebar from "../components/sidebar";
 import { BtnIcon, BtnArrow } from "../components/buttons";
-import IconCoffee from "../components/assets/icons/Coffee";
-import IconDiscord from "../components/assets/icons/Discord";
-import IconGithub from "../components/assets/icons/GitHub";
-import IconReddit from "../components/assets/icons/Reddit";
-import IconTrello from "../components/assets/icons/Trello";
-import IconYoutube from "../components/assets/icons/Youtube";
-import IconBluesky from "../components/assets/icons/Bluesky";
-import IconTwitter from "../components/assets/icons/Xtwitter";
 import CommunityStats from "../components/communitystats";
-import { OfficialAppCard, AppCard, fetchLatestReleasesFromRepos, fetchOfficialAppsData } from './apps/page';
-import { data } from "autoprefixer";
-
-async function fetchTotalDownloadsFromRepo(repo) {
-  const releasesApiUrl = `https://api.github.com/repos/${repo}/releases`;
-
-  try {
-    const response = await fetch(releasesApiUrl, {
-      headers: { Accept: "application/vnd.github+json" },
-      next: { revalidate: 3600 }, // ISR: revalidate every hour
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch releases for ${repo}: ${response.statusText}`);
-    }
-
-    const releases = await response.json();
-
-    // Calculate the total download count from all releases
-    const totalDownloads = releases.reduce((total, release) => {
-      const releaseDownloads = release.assets.reduce((sum, asset) => sum + asset.download_count, 0);
-      return total + releaseDownloads;
-    }, 0);
-
-    return { repo, totalDownloads }; // Return both repo name and download count
-  } catch (error) {
-    console.error(error);
-    return { repo, totalDownloads: 0 }; // Return 0 as fallback in case of error
-  }
-}
-
-// Function to fetch total downloads from multiple repositories
-async function fetchTotalDownloadsFromRepos(repos) {
-  const downloadCounts = await Promise.all(repos.map(fetchTotalDownloadsFromRepo));
-  return downloadCounts; // Return array of download counts for each repo
-}
-
-async function fetchDownloadUrls() {
-  const url = `https://api.github.com/repos/itsriprod/deskthing/releases/latest`;
-
-  try {
-    const response = await fetch(url, {
-      next: { revalidate: 3600 },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error fetching releases: ${response.statusText}`);
-    }
-
-    const release = await response.json();
-    const assets = release.assets;
-    const latestVersion = release.tag_name;  
-
-    return {
-      latestVersion,
-      linuxDeb: assets.find((asset) => asset.name.includes("amd64") && asset.name.endsWith(".deb"))?.browser_download_url,
-      linuxAppImage: assets.find((asset) => asset.name.includes("linux") && asset.name.endsWith(".AppImage"))?.browser_download_url,
-      macArm64: assets.find((asset) => asset.name.includes("mac_arm64"))?.browser_download_url,
-      macX64: assets.find((asset) => asset.name.includes("mac_x64"))?.browser_download_url,
-      raspberry: assets.find((asset) => asset.name.includes("raspberry"))?.browser_download_url,
-      windows: assets.find((asset) => asset.name.includes("win"))?.browser_download_url,
-    };
-  } catch (error) {
-    console.error(error);
-    return {};
-  }
-}
+import { OfficialAppCard, AppCard } from '../components/appCards';
+import {
+  IconCoffee,
+  IconDiscord,
+  IconGithub,
+  IconReddit,
+  IconTrello,
+  IconYoutube,
+  IconBluesky,
+  IconTwitter,
+} from "../components/assets/icons";
+import {
+  fetchCommunityReleasesFromRepos,
+  fetchOfficialAppsData,
+  fetchTotalDownloadsFromRepo,
+  fetchTotalDownloadsFromRepos,
+  fetchServerReleases,
+} from "../services";
 
 
 export default async function HomePage() {
@@ -91,7 +34,9 @@ export default async function HomePage() {
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
   };
 
-  const downloadUrls = await fetchDownloadUrls();
+  const serverReleases = await fetchServerReleases();
+  const latestRelease = serverReleases[0];
+  const downloadUrls = latestRelease.platforms;
 
   const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
 
@@ -113,7 +58,7 @@ export default async function HomePage() {
     })
   );
 
-  const releases = await fetchLatestReleasesFromRepos(repos);
+  const releases = await fetchCommunityReleasesFromRepos(repos);
   const { appNames, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
 
   if (!appNames || !releases) {
