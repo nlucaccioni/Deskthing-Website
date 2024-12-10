@@ -1,9 +1,9 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   basePath: '/Deskthing-Website', // Adjust this to your repo name
-// };
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  basePath: '/Deskthing-Website', // Adjust this to your repo name
+};
 
-// module.exports = {
-//   output: "export",
-//   nextConfig,
-// };
+module.exports = {
+  output: "export",
+  nextConfig,
+};

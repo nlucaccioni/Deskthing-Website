@@ -1,16 +1,40 @@
+
+
 export async function fetchServerReleases() {
   const url = `https://api.github.com/repos/itsriprod/deskthing/releases`;
 
+
+
   try {
+
+    console.log('Fetch started at:', new Date().toISOString()); // Log when fetch starts
+
+    console.time('Fetch ISR timing');
     const response = await fetch(url, {
-      next: { revalidate: 3600 }, // ISR: revalidate every hour
+      next: { revalidate: 20 }, 
+      // next: { revalidate: 3600 },// ISR: revalidate every hour
     });
+    console.timeEnd('Fetch ISR timing');
+
+    console.log('Fetch response received at:', new Date().toISOString());
+
+    const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
+    const rateLimitReset = response.headers.get('X-RateLimit-Reset');
+    console.log(
+      'Rate Limit Remaining:',
+      rateLimitRemaining,
+      'Rate Limit Reset Time:',
+      new Date(parseInt(rateLimitReset) * 1000).toISOString()
+    );
 
     if (!response.ok) {
       throw new Error(`Error fetching releases: ${response.statusText}`);
     }
 
     const releases = await response.json();
+    
+
+    console.log('JSON parsed at:', new Date().toISOString());
 
     // Extract required data from each release and filter by asset name containing "deskthing"
     return releases
