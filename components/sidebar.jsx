@@ -15,11 +15,21 @@ export default function Sidebar({ downloadUrls }) {
                 <p className="font-mono text-neutral-400 leading-3">{downloadUrls.latestVersion}</p>
             </div>
             <hr className="border-neutral-800"></hr>
-            <BtnIcon to={downloadUrls.windows} label="Windows" icon={<IconWindows/>}/>
-            <BtnIcon to={downloadUrls.macArm64} label="Mac Arm" icon={<IconApple/>}/>
-            <BtnIcon to={downloadUrls.macX64} label="Mac x64" icon={<IconApple/>}/>
-            <BtnIcon to={downloadUrls.linuxAppImage} label="Linux" icon={<IconLinux/>}/>
-            <BtnIcon to={downloadUrls.raspberry} label="Rasberry" icon={<IconRasberry/>}/>
+            {downloadUrls.windows && (
+                <BtnIcon to={downloadUrls.windows} label="Windows" icon={<IconWindows />} />
+            )}
+            {downloadUrls.macArm64 && (
+                <BtnIcon to={downloadUrls.macArm64} label="Mac Arm" icon={<IconApple />} />
+            )}
+            {downloadUrls.macX64 && (
+                <BtnIcon to={downloadUrls.macX64} label="Mac x64" icon={<IconApple />} />
+            )}
+            {downloadUrls.linuxAppImage && (
+                <BtnIcon to={downloadUrls.linuxAppImage} label="Linux" icon={<IconLinux />} />
+            )}
+            {downloadUrls.raspberry && (
+                <BtnIcon to={downloadUrls.raspberry} label="Raspberry" icon={<IconRasberry />} />
+            )}
             <hr className="border-neutral-800"></hr>
             <BtnArrow to="./releases#previousreleases" label="Previous Releases"/>
         </aside>

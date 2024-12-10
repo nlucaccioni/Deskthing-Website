@@ -40,9 +40,9 @@ export async function fetchServerReleases() {
               (asset) =>
                 asset.name.includes("linux") && asset.name.endsWith(".AppImage")
             )?.browser_download_url,
-            macArm64: assets.find((asset) => asset.name.includes("mac_arm64"))
+            macArm64: assets.find((asset) => asset.name.includes("mac_arm64") || asset.name.includes("mac-arm64"))
               ?.browser_download_url,
-            macX64: assets.find((asset) => asset.name.includes("mac_x64"))
+            macX64: assets.find((asset) => asset.name.includes("mac_x64") || asset.name.includes("mac-x64"))
               ?.browser_download_url,
             raspberry: assets.find((asset) => asset.name.includes("raspberry"))
               ?.browser_download_url,
