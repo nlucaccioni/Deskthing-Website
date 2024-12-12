@@ -36,16 +36,16 @@ export async function fetchServerReleases() {
 
     console.log('JSON parsed at:', new Date().toISOString());
 
-    // Extract required data from each release and filter by asset name containing "deskthing"
+
     return releases
       .map((release) => {
         const assets = release.assets.filter((asset) =>
           asset.name.toLowerCase().includes("deskthing")
         );
 
-        if (assets.length === 0) return null; // Skip releases with no "deskthing" assets
+        if (assets.length === 0) return null;
 
-        // Raw file names and URLs
+     
         const rawFiles = assets.map((asset) => ({
           name: asset.name,
           url: asset.browser_download_url,
@@ -75,7 +75,7 @@ export async function fetchServerReleases() {
           },
         };
       })
-      .filter(Boolean); // Remove null entries
+      .filter(Boolean); 
   } catch (error) {
     console.error(error);
     return [];

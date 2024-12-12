@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .mainContainer {
-    max-width:64rem;
+    max-width: 1024px;
     margin-top: 3.75rem;
     margin-bottom: 6rem;
 }
 
 .wideContainer {
-    width:96rem;
+    width: 1156px;
     margin-top: 3.75rem;
     margin-bottom: 6rem;
 }
