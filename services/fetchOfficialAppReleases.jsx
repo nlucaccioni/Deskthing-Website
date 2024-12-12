@@ -1,4 +1,5 @@
 import { titleCase } from '../utils/titleCase';
+import semver from 'semver';
 
 export async function fetchOfficialAppsData() {
   const repo = "ItsRiprod/Deskthing-Apps";
@@ -25,19 +26,33 @@ export async function fetchOfficialAppsData() {
     const latestRelease = releases[0];
     const { html_url: latestReleaseUrl, author, published_at: date, html_url: repoUrl } = latestRelease;
 
-    // Extract app names from the release data (assuming release assets contain app names)
-    const appNames = releases[0].assets.map((asset) => {
-      // Extract the app name before "-app-v0.9.0.zip" (version may vary)
-      const appNameMatch = asset.name.match(/^(.*?)\s*-app-v\d+\.\d+\.\d+\.zip$/);
-      if (appNameMatch) {
-        // Apply title case and return the app name
-        return titleCase(appNameMatch[1]);
+    const apps = latestRelease.assets.map((asset) => {
+      const appInfoMatch = asset.name.match(/^(.*?)\s*-app-v(\d+\.\d+\.\d+)\.zip$/);
+      if (appInfoMatch) {
+        const [_, rawAppName, appVersion] = appInfoMatch;
+        const appName = titleCase(rawAppName); 
+        return { appName, appVersion };
       }
       return null; // Return null if the format is not matched
-    }).filter(Boolean); // Filter out null values in case of unmatched assets
+    }).filter(Boolean);
+
+    const groupedApps = apps.reduce((acc, app) => {
+      if (!acc[app.appName]) {
+        acc[app.appName] = [];
+      }
+      acc[app.appName].push(app);
+      return acc;
+    }, {});
+  
+    const latestApps = Object.values(groupedApps).map((appsGroup) => {
+      const latestApp = appsGroup.sort((a, b) =>
+        semver.compare(b.appVersion, a.appVersion)
+      )[0];
+      return latestApp;
+    });
 
     return {
-      appNames,
+      latestApps,
       latestReleaseUrl, 
       repoUrl, 
       releaseDate: new Date(date).toLocaleDateString(), 

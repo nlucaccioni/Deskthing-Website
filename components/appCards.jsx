@@ -1,12 +1,12 @@
 import { Download, ExternalLink } from 'lucide-react';
 
-export function OfficialAppCard({ appName, latestReleaseUrl, repoUrl, releaseDate }) {
+export function OfficialAppCard({ appName, appVersion, latestReleaseUrl, repoUrl }) {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
       <h4 className="text-left w-full font-medium">{appName}</h4>
       <p className="text-left w-full font-mono text-neutral-400 text-sm">
-        {releaseDate}
+        v{appVersion}
       </p>
       <div className="flex flex-row gap-2">
         <a

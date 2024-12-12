@@ -23,7 +23,7 @@ module.exports = {
       'columnGap': '60px',
       'sectionGap': '140px',
       'nav': '75px',
-      'sidebar': '300px',
+      'sidebar': '320px',
     },
     extend: {
       scale: {

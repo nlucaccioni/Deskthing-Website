@@ -50,8 +50,8 @@ export default async function ReleasesPage() {
   };
 
   return (
-    <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 2xl:mx-0">
-      <div className="wideContainer flex flex-col mx-auto gap-6">
+    <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 xl:mx-0">
+      <div className="wideContainer xl:px-6 flex flex-col mx-auto gap-6">
         {latestRelease && (
           <>
             <h2 className="mb-auto">Latest Release</h2>

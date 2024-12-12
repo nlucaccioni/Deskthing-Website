@@ -1,3 +1,4 @@
+import React from 'react';
 import Sidebar from "../components/sidebar";
 import { BtnIcon, BtnArrow } from "../components/buttons";
 import CommunityStats from "../components/communitystats";
@@ -40,17 +41,6 @@ export default async function HomePage() {
 
   const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
 
-  const repos = [
-    "TylStres/DeskThing-Timer",
-    "dakota-kallas/DeskThing-MarketHub",
-    "RandomDebugGuy/DeskThing-GMP",
-    "Jarsa132/deskthing-volctrl",
-    "espeon/lyrthing",
-    "dakota-kallas/DeskThing-GitHub",
-    "dakota-kallas/DeskThing-SportsHub",
-    "nwo122383/sonos-webapp",
-  ];
-
   const downloadData = await Promise.all(
     statRepos.map(async (repo) => {
       const { repo: repoName, totalDownloads } = await fetchTotalDownloadsFromRepo(repo);
@@ -58,16 +48,15 @@ export default async function HomePage() {
     })
   );
 
-  const releases = await fetchCommunityReleasesFromRepos(repos);
-  const { appNames, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
+  const releases = await fetchCommunityReleasesFromRepos();
+  const { latestApps, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
 
-  if (!appNames || !releases) {
+  if (!latestApps || !releases) {
     return <div>Error loading apps</div>;
   }
 
-  // Slice the first 3 apps for each
-  const officialAppsToDisplay = appNames.slice(0, 3); // First 3 official apps
-  const communityAppsToDisplay = releases.slice(0, 3); // First 3 community apps
+  const officialAppsToDisplay = latestApps.slice(0, 3);
+  const communityAppsToDisplay = releases.slice(0, 3);
 
   const deskthingDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing")?.totalDownloads || 0;
   const deskthingAppsDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing-apps")?.totalDownloads || 0;
@@ -179,7 +168,7 @@ export default async function HomePage() {
               
                 <CommunityStats stat={deskthingDownloads.toLocaleString()} label="Server Downloads"/>
                 <CommunityStats stat={deskthingAppsDownloads.toLocaleString()} label="App Downloads"/>
-                <CommunityStats stat="2,678" label="Discord Memebers"/>
+                <CommunityStats stat="2,979" label="Discord Memebers"/>
               </div>
             </section>
 
@@ -195,13 +184,13 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {officialAppsToDisplay.map((appName, index) => (
+                {officialAppsToDisplay.map((app, index) => (
                   <OfficialAppCard
                     key={index}
-                    appName={appName}
+                    appName={app.appName}
                     latestReleaseUrl={latestReleaseUrl}
                     repoUrl={repoUrl}
-                    releaseDate={releaseDate}
+                    appVersion={app.appVersion}
                   />
                 ))}
                 {communityAppsToDisplay.map((release, index) => (

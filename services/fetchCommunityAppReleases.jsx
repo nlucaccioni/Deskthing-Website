@@ -1,5 +1,16 @@
-//fetch community apps
-export async function fetchCommunityReleasesFromRepos(repos) {
+// Repos to pull for Community Apps
+const repos = [
+  "TylStres/DeskThing-Timer",
+  "dakota-kallas/DeskThing-MarketHub",
+  "RandomDebugGuy/DeskThing-GMP",
+  "Jarsa132/deskthing-volctrl",
+  "espeon/lyrthing",
+  "dakota-kallas/DeskThing-GitHub",
+  "dakota-kallas/DeskThing-SportsHub",
+  "nwo122383/sonos-webapp",
+];
+
+export async function fetchCommunityReleasesFromRepos() {
   const fetchRepoData = async (repo) => {
     const repoApiUrl = `https://api.github.com/repos/${repo}`;
     const releasesApiUrl = `${repoApiUrl}/releases`;
