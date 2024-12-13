@@ -32,6 +32,8 @@ const HomePage: FC = async () => {
     bluesky: "https://bsky.app/profile/deskthing.app",
     twitter: "https://x.com/TheDeskThing",
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
+    wiki: "https://wiki.thinglabs.tech/",
+    getStarted: "https://wiki.thinglabs.tech/first-steps/flashing/",
   };
 
   const serverReleases: any[] = await fetchServerReleases();
@@ -78,7 +80,8 @@ const HomePage: FC = async () => {
                     your productivity in the process. Everyone wins.
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                    <BtnArrow to={btnLinks.github} label="Documentation" />
+                    <BtnArrow to={btnLinks.getStarted} label="Get Started!" filled />
+                    <BtnArrow to={btnLinks.wiki} label="Documentation" />
                   </div>
                 </div>
                 <div>

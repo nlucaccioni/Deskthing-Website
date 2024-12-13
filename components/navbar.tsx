@@ -15,12 +15,15 @@ const NavLink: React.FC<NavLinkProps> = ({ href, label }) => {
 };
 
 export default function Navbar(): JSX.Element {
+    //NAV ITEMS
     const navItems: { href: string; label: string; }[] = [
         { href: "./", label: "Home" },
         { href: "./about", label: "About" },
         { href: "./releases", label: "Releases" },
         { href: "./apps", label: "Apps" },
+        { href: "https://wiki.thinglabs.tech", label: "Wiki" },
         // { href: "./supporters", label: "Supporters"},
+        
     ];
 
     const navList: JSX.Element[] = navItems.map((item, index) => (
