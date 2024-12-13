@@ -1,6 +1,13 @@
 import { redirect } from "next/navigation";
+import { JSX } from "react";
 
-const redirects = {
+interface RedirectInfo {
+  destination: string;
+  title: string;
+  description: string;
+}
+
+const redirects: Record<string, RedirectInfo> = {
   youtube: {
     destination: "https://www.youtube.com/@deskthing",
     title: "DeskThing | Youtube",
@@ -18,14 +25,18 @@ const redirects = {
   },
 };
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return Object.keys(redirects).map((key) => ({
     slug: key,
   }));
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params; // Await the params object
+interface GenerateMetadataParams {
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: GenerateMetadataParams): Promise<{ title: string; description: string }> {
+  const { slug } = params;
 
   const redirectInfo = redirects[slug];
 
@@ -42,8 +53,12 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function RedirectPage({ params }) {
-  const { slug } = await params;
+interface RedirectPageProps {
+  params: { slug: string; query?: string };
+}
+
+export default async function RedirectPage({ params }: RedirectPageProps): Promise<JSX.Element> {
+  const { slug } = params;
 
   const redirectInfo = redirects[slug];
 
@@ -54,7 +69,7 @@ export default async function RedirectPage({ params }) {
   let { destination } = redirectInfo;
 
   if (slug === "deskthing") {
-    const searchParams = new URLSearchParams(params?.query || "");
+    const searchParams = new URLSearchParams(params.query || "");
     destination += searchParams ? `?${searchParams.toString()}` : "";
   }
 

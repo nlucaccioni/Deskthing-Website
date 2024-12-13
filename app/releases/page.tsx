@@ -1,5 +1,6 @@
 import { Download } from 'lucide-react';
 import { fetchServerReleases } from '../../services';
+import { JSX } from 'react';
 
 export const metadata: { title: string } = {
   title: 'DeskThing | Releases',

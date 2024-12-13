@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import MiniArrowRight from "./assets/icons/MiniArrow_Right"
 
 interface BtnIconProps {
