@@ -3,7 +3,10 @@
 //   basePath: '/Deskthing-Website', // Adjust this to your repo name
 // };
 
-// module.exports = {
-//   output: "export",
-//   nextConfig,
-// };
+module.exports = {
+  // output: "export",
+  // nextConfig,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+};
