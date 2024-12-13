@@ -3,15 +3,18 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-
-export const metadata = {
+export const metadata: { title: string; description: string } = {
   title: 'DeskThing',
   description: 'Take back your CarThing.',
 }
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
     return (
       <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
         <link rel="icon" href="imgs/AppIcon.png" />
@@ -22,4 +25,4 @@ export default function RootLayout({ children }) {
         </body>
       </html>
     )
-  }
+}

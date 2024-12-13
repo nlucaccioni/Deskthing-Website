@@ -1,13 +1,34 @@
+import { FC } from 'react';
 import { BtnIcon } from "../../components/buttons";
 import IconCoffee from "../../components/assets/icons/Coffee";
 import IconGithub from "../../components/assets/icons/GitHub";
 
-export const metadata = {
+export const metadata: { title: string } = {
   title: 'DeskThing | About',
 }
 
-// Dummy Data
-const data = {
+interface Supporter {
+  support_id: number;
+  payer_name: string;
+  support_coffees: number;
+  support_note: string;
+  support_created_on: string;
+}
+
+interface Subscriber {
+  subscription_id: number;
+  payer_name: string;
+  subscription_coffee_num: number;
+  subscription_message: string;
+  subscription_created_on: string;
+}
+
+interface Data {
+  supporters: Supporter[];
+  subscribers: Subscriber[];
+}
+
+const data: Data = {
   supporters: [
     {
       support_id: 1,
@@ -104,13 +125,17 @@ const data = {
 
 const { supporters, subscribers } = data;
 
-const nameStyle = "text-2xl font-medium";
-const coffeeStyle = "text-s font-mono text-green-500";
-const dateStyle = "text-xs font-mono text-neutral-500";
-const cardStyle =
+const nameStyle: string = "text-2xl font-medium";
+const coffeeStyle: string = "text-s font-mono text-green-500";
+const dateStyle: string = "text-xs font-mono text-neutral-500";
+const cardStyle: string =
   "flex flex-col gap-1 p-4 rounded-lg bg-neutral-950 border border-neutral-800 hoverDropShadow transition ease-in-out duration-200 hover:scale-101";
 
-function SupportersSection({ supporters }) {
+interface SupportersSectionProps {
+  supporters: Supporter[];
+}
+
+const SupportersSection: FC<SupportersSectionProps> = ({ supporters }) => {
   return (
     <section>
       <h2>Caffeine Addiction Supporters</h2>
@@ -130,7 +155,11 @@ function SupportersSection({ supporters }) {
   );
 }
 
-function SubscribersSection({ subscribers }) {
+interface SubscribersSectionProps {
+  subscribers: Subscriber[];
+}
+
+const SubscribersSection: FC<SubscribersSectionProps> = ({ subscribers }) => {
   return (
     <section>
       <h2>Caffeine Addiction Subscribers</h2>
@@ -154,7 +183,7 @@ function SubscribersSection({ subscribers }) {
   );
 }
 
-export default function SupportersPage() {
+const SupportersPage: FC = () => {
   return (
     <>
       <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 2xl:mx-0">
@@ -193,3 +222,5 @@ export default function SupportersPage() {
     </>
   );
 }
+
+export default SupportersPage;

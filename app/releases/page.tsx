@@ -1,12 +1,16 @@
 import { Download } from 'lucide-react';
 import { fetchServerReleases } from '../../services';
 
-export const metadata = {
+export const metadata: { title: string } = {
   title: 'DeskThing | Releases',
 }
 
+interface SmallReleaseDownloadProps {
+  label: string;
+  url: string;
+}
 
-function SmallReleaseDownload({ label, url }) {
+function SmallReleaseDownload({ label, url }: SmallReleaseDownloadProps): JSX.Element {
   return (
     <a
       href={url}
@@ -18,7 +22,19 @@ function SmallReleaseDownload({ label, url }) {
   );
 }
 
-function ReleasesCard({ release }) {
+interface Release {
+  version: string;
+  releaseDate: string;
+  releaseNotes: string;
+  rawFiles: { name: string; url: string }[];
+  platforms: { [key: string]: string };
+}
+
+interface ReleasesCardProps {
+  release: Release;
+}
+
+function ReleasesCard({ release }: ReleasesCardProps): JSX.Element {
   return (
     <div className="p-6 border bg-neutral-925 border-neutral-800 rounded-lg flex flex-col gap-4 w-full">
       <div className="flex flex-col gap-1">
@@ -39,12 +55,12 @@ function ReleasesCard({ release }) {
   );
 }
 
-export default async function ReleasesPage() {
-  const releases = await fetchServerReleases();
-  const latestRelease = releases[0];
-  const previousReleases = releases.slice(1);
+export default async function ReleasesPage(): Promise<JSX.Element> {
+  const releases: Release[] = await fetchServerReleases();
+  const latestRelease: Release | undefined = releases[0];
+  const previousReleases: Release[] = releases.slice(1);
 
-  const getPreviewNotes = (notes, charLimit = 200) => {
+  const getPreviewNotes = (notes: string | null | undefined, charLimit: number = 200): string => {
     if (!notes) return '';
     return notes.length > charLimit ? `${notes.slice(0, charLimit)}...` : notes;
   };

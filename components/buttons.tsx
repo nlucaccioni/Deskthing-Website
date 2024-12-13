@@ -1,6 +1,12 @@
-import MiniArrowRight from "../components/assets/icons/MiniArrow_Right"
+import MiniArrowRight from "./assets/icons/MiniArrow_Right"
 
-function BtnIcon({ to, icon, label }) {
+interface BtnIconProps {
+    to: string;
+    icon: JSX.Element;
+    label: string;
+}
+
+const BtnIcon: React.FC<BtnIconProps> = ({ to, icon, label }) => {
     return (
         <a href={to} 
         className="font-mono px-4 py-2 border border-neutral-800 rounded-lg flex flex-row items-center gap-2 w-fit
@@ -11,7 +17,13 @@ function BtnIcon({ to, icon, label }) {
     )
 }
 
-function  BtnArrow({ to, label, filled}) {
+interface BtnArrowProps {
+    to: string;
+    label: string;
+    filled?: boolean;
+}
+
+const BtnArrow: React.FC<BtnArrowProps> = ({ to, label, filled }) => {
     const baseStyles =
     "font-mono text-sm px-4 py-2 border border-neutral-800 rounded-lg flex flex-row items-center gap-2 w-fit  hover:gap-3 transition-all ease-in-out duration-200";
     const filledStyles = 
@@ -19,12 +31,11 @@ function  BtnArrow({ to, label, filled}) {
 
     return (   
         <a href={to} className={`${baseStyles} ${filledStyles}`}>
-      {label}
-      <MiniArrowRight />
-    </a>
+            {label}
+            <MiniArrowRight />
+        </a>
     )
 }
-
 
 export { BtnIcon }
 export { BtnArrow }

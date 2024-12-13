@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Sidebar from "../components/sidebar";
 import { BtnIcon, BtnArrow } from "../components/buttons";
 import CommunityStats from "../components/communitystats";
@@ -21,9 +21,8 @@ import {
   fetchServerReleases,
 } from "../services";
 
-
-export default async function HomePage() {
-  const btnLinks = {
+const HomePage: FC = async () => {
+  const btnLinks: { [key: string]: string } = {
     github: "https://github.com/ItsRiprod/DeskThing",
     trello: "https://trello.com/b/6v0paxqV/deskthing",
     discord: "https://discord.gg/deskthing-1267348109067817051",
@@ -35,31 +34,31 @@ export default async function HomePage() {
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
   };
 
-  const serverReleases = await fetchServerReleases();
-  const latestRelease = serverReleases[0];
-  const downloadUrls = latestRelease.platforms;
+  const serverReleases: any[] = await fetchServerReleases();
+  const latestRelease: any = serverReleases[0];
+  const downloadUrls: string[] = latestRelease.platforms;
 
-  const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
+  const statRepos: string[] = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
 
-  const downloadData = await Promise.all(
-    statRepos.map(async (repo) => {
-      const { repo: repoName, totalDownloads } = await fetchTotalDownloadsFromRepo(repo);
+  const downloadData: { repo: string; totalDownloads: number }[] = await Promise.all(
+    statRepos.map(async (repo: string) => {
+      const { repo: repoName, totalDownloads }: { repo: string; totalDownloads: number } = await fetchTotalDownloadsFromRepo(repo);
       return { repo: repoName, totalDownloads }; 
     })
   );
 
-  const releases = await fetchCommunityReleasesFromRepos();
-  const { latestApps, latestReleaseUrl, repoUrl, releaseDate } = await fetchOfficialAppsData();
+  const releases: any[] = await fetchCommunityReleasesFromRepos();
+  const { latestApps, latestReleaseUrl, repoUrl, releaseDate }: { latestApps: any[]; latestReleaseUrl: string; repoUrl: string; releaseDate: string } = await fetchOfficialAppsData();
 
   if (!latestApps || !releases) {
     return <div>Error loading apps</div>;
   }
 
-  const officialAppsToDisplay = latestApps.slice(0, 3);
-  const communityAppsToDisplay = releases.slice(0, 3);
+  const officialAppsToDisplay: any[] = latestApps.slice(0, 3);
+  const communityAppsToDisplay: any[] = releases.slice(0, 3);
 
-  const deskthingDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing")?.totalDownloads || 0;
-  const deskthingAppsDownloads = downloadData.find(item => item.repo === "itsriprod/deskthing-apps")?.totalDownloads || 0;
+  const deskthingDownloads: number = downloadData.find(item => item.repo === "itsriprod/deskthing")?.totalDownloads || 0;
+  const deskthingAppsDownloads: number = downloadData.find(item => item.repo === "itsriprod/deskthing-apps")?.totalDownloads || 0;
 
   return (
     <>
@@ -67,7 +66,6 @@ export default async function HomePage() {
         <div className="lg:border-r border-neutral-800 w-full lg:pr-6 xl:px-6 2xl:px-0">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
             
-            {/* Hero */}
             <section id="hero">
               <div className="flex flex-col-reverse gap-4 relative">
                 <div className="flex flex-col gap-4">
@@ -80,7 +78,6 @@ export default async function HomePage() {
                     your productivity in the process. Everyone wins.
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                    {/* <BtnArrow to="/" label="Get Started" filled={true} /> */}
                     <BtnArrow to={btnLinks.github} label="Documentation" />
                   </div>
                 </div>
@@ -95,7 +92,6 @@ export default async function HomePage() {
               </div>
             </section>
 
-            {/* Connect */}
             <section
               id="connect"
               className=" flex flex-col lg:flex-row gap-sectionGap lg:gap-columnGap"
@@ -161,18 +157,16 @@ export default async function HomePage() {
               </div>
             </section>
 
-            {/* Community Stats */}
             <section id="stats">
               <h2>Community Stats</h2>
               <div className="flex flex-col md:flex-row gap-4 items-stretch">
-              
+              	
                 <CommunityStats stat={deskthingDownloads.toLocaleString()} label="Server Downloads"/>
                 <CommunityStats stat={deskthingAppsDownloads.toLocaleString()} label="App Downloads"/>
-                <CommunityStats stat="2,979" label="Discord Memebers"/>
+                <CommunityStats stat="2,979" label="Discord Members"/>
               </div>
             </section>
 
-            {/* Apps */}
             <section id="apps" className="flex flex-col gap-4">
               <div>
                 <h2>DeskThing Apps</h2>
@@ -184,7 +178,7 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {officialAppsToDisplay.map((app, index) => (
+                {officialAppsToDisplay.map((app: any, index: number) => (
                   <OfficialAppCard
                     key={index}
                     appName={app.appName}
@@ -193,7 +187,7 @@ export default async function HomePage() {
                     appVersion={app.appVersion}
                   />
                 ))}
-                {communityAppsToDisplay.map((release, index) => (
+                {communityAppsToDisplay.map((release: any, index: number) => (
                   <AppCard
                     key={index}
                     appName={release.appName}
@@ -207,7 +201,6 @@ export default async function HomePage() {
               <BtnArrow to="./apps" label="Explore more apps" />
             </section>
 
-            {/* Support */}
             <section id="support">
               <div className="basis-1/2 flex flex-col gap-4">
                 <div>
@@ -244,3 +237,5 @@ export default async function HomePage() {
     </>
   );
 }
+
+export default HomePage;

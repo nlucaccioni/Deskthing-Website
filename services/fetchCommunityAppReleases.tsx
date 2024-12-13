@@ -1,5 +1,5 @@
 // Repos to pull for Community Apps
-const repos = [
+const repos: string[] = [
   "TylStres/DeskThing-Timer",
   "dakota-kallas/DeskThing-MarketHub",
   "RandomDebugGuy/DeskThing-GMP",
@@ -10,14 +10,22 @@ const repos = [
   "nwo122383/sonos-webapp",
 ];
 
-export async function fetchCommunityReleasesFromRepos() {
-  const fetchRepoData = async (repo) => {
-    const repoApiUrl = `https://api.github.com/repos/${repo}`;
-    const releasesApiUrl = `${repoApiUrl}/releases`;
+interface ReleaseData {
+  appName: string;
+  authorName: string;
+  description: string;
+  date: string;
+  latestReleaseUrl: string;
+  repoUrl: string;
+}
+
+export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | null)[]> {
+  const fetchRepoData = async (repo: string): Promise<ReleaseData | null> => {
+    const repoApiUrl: string = `https://api.github.com/repos/${repo}`;
+    const releasesApiUrl: string = `${repoApiUrl}/releases`;
 
     try {
-      // Fetch repository metadata for description and repo URL
-      const repoResponse = await fetch(repoApiUrl, {
+      const repoResponse: Response = await fetch(repoApiUrl, {
         headers: { Accept: "application/vnd.github+json" },
         next: { revalidate: 3600 }, // Cache revalidation every hour
       });
@@ -27,11 +35,10 @@ export async function fetchCommunityReleasesFromRepos() {
         return null;
       }
 
-      const repoData = await repoResponse.json();
+      const repoData: any = await repoResponse.json();
       const { description, html_url, owner } = repoData;
 
-      // Fetch latest release data
-      const releaseResponse = await fetch(releasesApiUrl, {
+      const releaseResponse: Response = await fetch(releasesApiUrl, {
         headers: { Accept: "application/vnd.github+json" },
         next: { revalidate: 3600 }, // Cache revalidation every hour
       });
@@ -41,18 +48,18 @@ export async function fetchCommunityReleasesFromRepos() {
         return null;
       }
 
-      const releases = await releaseResponse.json();
+      const releases: any[] = await releaseResponse.json();
       if (releases.length === 0) {
         console.warn(`No releases found for ${repo}`);
         return null;
       }
 
-      const latestRelease = releases[0];
+      const latestRelease: any = releases[0];
       const { html_url: latestReleaseUrl, published_at: date, author } = latestRelease;
 
       return {
         appName: repo.split("/")[1], // Extract the repository name as app name
-        authorName: author?.login || owner?.login || "Unknown", // Author name or fallback to owner
+        authorName: author?.login || owner?.login || "Unknown", 
         description: description || "No description available.",
         date: new Date(date).toLocaleDateString(),
         latestReleaseUrl,
@@ -64,9 +71,7 @@ export async function fetchCommunityReleasesFromRepos() {
     }
   };
 
-  // Fetch data for all repositories in parallel
-  const releaseData = await Promise.all(repos.map(fetchRepoData));
+  const releaseData: (ReleaseData | null)[] = await Promise.all(repos.map(fetchRepoData));
 
-  // Filter out null entries in case of failures
   return releaseData.filter(Boolean);
 }

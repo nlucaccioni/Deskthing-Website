@@ -1,6 +1,14 @@
 import { Download, ExternalLink } from 'lucide-react';
+import React, { FC } from 'react';
 
-export function OfficialAppCard({ appName, appVersion, latestReleaseUrl, repoUrl }) {
+interface OfficialAppCardProps {
+  appName: string;
+  appVersion: string;
+  latestReleaseUrl: string;
+  repoUrl: string;
+}
+
+export const OfficialAppCard: FC<OfficialAppCardProps> = ({ appName, appVersion, latestReleaseUrl, repoUrl }) => {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">
@@ -30,7 +38,15 @@ export function OfficialAppCard({ appName, appVersion, latestReleaseUrl, repoUrl
   );
 }
 
-export function AppCard({ appName, authorName, description, latestReleaseUrl, repoUrl }) {
+interface AppCardProps {
+  appName: string;
+  authorName: string;
+  description: string;
+  latestReleaseUrl: string;
+  repoUrl: string;
+}
+
+export const AppCard: FC<AppCardProps> = ({ appName, authorName, description, latestReleaseUrl, repoUrl }) => {
   return (
     <div className="p-6 border border-neutral-800 rounded-lg flex flex-col justify-between gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200">

@@ -1,30 +1,39 @@
-"use client";
-import { Cross as Hamburger } from "hamburger-react";
-import { Github } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
-import LogoSVG from "../components/assets/Logo";
-import MiniArrowRight from "../components/assets/icons/MiniArrow_Right";
-import { motion, AnimatePresence } from "framer-motion";
+'use client'
+import React, { FC, useRef, useState, useEffect } from 'react';
+import { Cross as Hamburger } from 'hamburger-react';
+import { Github } from 'lucide-react';
+import LogoSVG from './assets/Logo';
+import MiniArrowRight from './assets/icons/MiniArrow_Right';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function NavMobile({ navItems }) {
-  const [isOpen, setOpen] = useState(false);
-  const navRef = useRef(null);
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface NavMobileProps {
+  navItems: NavItem[];
+}
+
+const NavMobile: FC<NavMobileProps> = ({ navItems }) => {
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
@@ -34,21 +43,20 @@ export default function NavMobile({ navItems }) {
       opacity: 1,
       height: 'auto',
       transition: {
-        height: { duration: 0.5, ease: "easeInOut" },
-        staggerChildren: 0.1, 
+        height: { duration: 0.5, ease: 'easeInOut' },
+        staggerChildren: 0.1,
       },
     },
     exit: {
       opacity: 0,
       height: 0,
       transition: {
-        height: { duration: 0.5, ease: "easeInOut" },
+        height: { duration: 0.5, ease: 'easeInOut' },
         staggerChildren: 0.1,
-        staggerDirection: -1, 
+        staggerDirection: -1,
       },
     },
   };
-
 
   const childVariants = {
     hidden: { y: -20, opacity: 0 },
@@ -56,16 +64,16 @@ export default function NavMobile({ navItems }) {
     exit: { y: -20, opacity: 0 },
   };
 
-  const navList = navItems.map((item, index) => (
+  const navList = navItems.map((item: NavItem, index: number) => (
     <motion.li
       key={index}
       className="text-3xl py-4 px-3 text-neutral-300"
       variants={childVariants}
-      transition="east-in-out"
+      transition={{ ease: 'easeInOut'}}
     >
       <a href={item.href} className="flex flex-row w-full gap-4 items-center">
         <p>{item.label}</p>
-        <MiniArrowRight size="18" />
+        <MiniArrowRight size={18} />
       </a>
     </motion.li>
   ));
@@ -82,7 +90,7 @@ export default function NavMobile({ navItems }) {
               animate="show"
               exit="exit"
               variants={containerVariants}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               <motion.ul
                 className="flex flex-col gap-2"
@@ -106,3 +114,5 @@ export default function NavMobile({ navItems }) {
     </div>
   );
 }
+
+export default NavMobile;
