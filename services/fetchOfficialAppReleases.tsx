@@ -21,7 +21,7 @@ export async function fetchOfficialAppsData(): Promise<LatestAppsResponse | null
   try {
     const releaseResponse: Response = await fetch(releasesApiUrl, {
       headers: { Accept: "application/vnd.github+json" },
-      next: { revalidate: 3600 }, // ISR: revalidate every hour
+      next: { revalidate: 300 }, // ISR: revalidate every 5 minutes
     });
 
     if (!releaseResponse.ok) {

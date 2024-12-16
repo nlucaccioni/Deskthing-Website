@@ -27,7 +27,7 @@ export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | 
     try {
       const repoResponse: Response = await fetch(repoApiUrl, {
         headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 3600 }, // Cache revalidation every hour
+        next: { revalidate: 1800 }, // Cache revalidation every 30 minutes
       });
 
       if (!repoResponse.ok) {
@@ -40,7 +40,7 @@ export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | 
 
       const releaseResponse: Response = await fetch(releasesApiUrl, {
         headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 3600 }, // Cache revalidation every hour
+        next: { revalidate: 1800 }, // Cache revalidation every 30 minutes
       });
 
       if (!releaseResponse.ok) {

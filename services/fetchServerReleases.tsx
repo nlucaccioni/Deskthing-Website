@@ -19,17 +19,18 @@ export async function fetchServerReleases(): Promise<Array<{
 
   try {
     const response: Response = await fetch(url, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 }, // ISR: revalidate every 5 minutes
     });
 
-    const rateLimitRemaining: string | null = response.headers.get('X-RateLimit-Remaining');
-    const rateLimitReset: string | null = response.headers.get('X-RateLimit-Reset');
-    console.log(
-      'Rate Limit Remaining:',
-      rateLimitRemaining,
-      'Rate Limit Reset Time:',
-      new Date(parseInt(rateLimitReset as string) * 1000).toISOString()
-    );
+    //Rate limit debugging
+    // const rateLimitRemaining: string | null = response.headers.get('X-RateLimit-Remaining');
+    // const rateLimitReset: string | null = response.headers.get('X-RateLimit-Reset');
+    // console.log(
+    //   'Rate Limit Remaining:',
+    //   rateLimitRemaining,
+    //   'Rate Limit Reset Time:',
+    //   new Date(parseInt(rateLimitReset as string) * 1000).toISOString()
+    // );
 
     if (!response.ok) {
       throw new Error(`Error fetching releases: ${response.statusText}`);
