@@ -83,7 +83,7 @@ const HomePage: FC = async () => {
                     your productivity in the process. Everyone wins.
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                    <BtnArrow to={btnLinks.getStarted} label="Get Started!" filled />
+                    <BtnArrow to={btnLinks.getStarted} label="Get Started" filled />
                     <BtnArrow to={btnLinks.wiki} label="Documentation" />
                   </div>
                 </div>
