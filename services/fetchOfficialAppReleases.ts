@@ -1,4 +1,4 @@
-import { titleCase } from "../utils/titleCase";
+import { titleCase } from "../utils/titleCase.jsx";
 import semver from "semver";
 
 interface App {
