@@ -1,6 +1,6 @@
 import LogoSVG from "../components/assets/Logo";
 import { Github } from 'lucide-react';
-import NavMobile from "../components/nav-mobile";
+import NavMobile from "./navMobile";
 import { JSX } from "react";
 
 interface NavLinkProps {

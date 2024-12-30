@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Sidebar from "../components/sidebar";
 import { BtnIcon, BtnArrow } from "../components/buttons";
-import CommunityStats from "../components/communitystats";
+import CommunityStats from "../components/communityStats";
 import { OfficialAppCard, AppCard } from '../components/appCards';
 import {
   IconCoffee,
@@ -19,8 +19,8 @@ import {
   fetchTotalDownloadsFromRepo,
   fetchTotalDownloadsFromRepos,
   fetchServerReleases,
+  fetchDiscordMemberCount,
 } from "../services";
-import { fetchDiscordMemberCount } from '../services/fetchDiscordMembers';
 
 const HomePage: FC = async () => {
   const btnLinks: { [key: string]: string } = {
