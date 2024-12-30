@@ -65,3 +65,7 @@ p {
 .hoverDropShadow:hover {
     filter: drop-shadow(0px 0px 15px rgba(22, 163, 74, 0.30));
 }
+
+ol {
+    list-style: decimal;
+}
