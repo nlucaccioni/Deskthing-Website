@@ -53,6 +53,14 @@ export default async function AppPage(): Promise<JSX.Element> {
           </section>
           <section className="w-full flex flex-col gap-4">
             <h2>Community Apps</h2>
+            <p class="mb-3 -mt-3 text-neutral-400">Installing Community Apps:
+              <ol class="list-decimal ml-6 mt-1">
+                <li>Download the app release .zip</li>
+                <li>Go to Downloads {'>'} App in the Deskthing server app.</li>
+                <li>Click the “Upload App” button on the sidebar.</li>
+                <li>Navigate to the apps .zip and open.</li>
+              </ol>
+            </p>
             <div className="grid rid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {releases.map((release: Release, index: number) => (
                 <AppCard
