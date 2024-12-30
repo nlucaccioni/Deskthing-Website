@@ -91,7 +91,7 @@ const HomePage: FC = async () => {
                     <img
                       src="./imgs/DeskThing_Device.png"
                       alt="Desk Thing Device"
-                      className="justify-self-center pt-4 pb-[60px] w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[450px] 2xl:w-[500px] xl:py-0 xl:absolute bottom-[20px] xl:right-[0px] 2xl:bottom-[4px] 2xl:right-[-50px]  
+                      className="justify-self-center pt-4 pb-[60px] w-[80vw] md:w-[60vw] lg:w-[50vw] xl:w-[440px] 2xl:w-[500px] xl:py-0 xl:absolute bottom-[20px] xl:right-[0px] 2xl:bottom-[4px] 2xl:right-[-50px]  
                       imgDropShadow aspect-auto hover:scale-110 -rotate-12 hover:-rotate-6 transition ease-in-out duration-500"
                     />
                   </div>
