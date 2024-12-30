@@ -18,7 +18,7 @@ export const OfficialAppCard: FC<OfficialAppCardProps> = ({ appName, appVersion,
       </p>
       <div className="flex flex-row gap-2">
         <a
-          href={latestReleaseUrl}
+          href={latestReleaseUrl} target="_blank"
           className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm 
           hover:bg-green-600 transition ease-in-out duration-200 hoverDropShadow"
         >
@@ -26,7 +26,7 @@ export const OfficialAppCard: FC<OfficialAppCardProps> = ({ appName, appVersion,
           <Download size="20px" />
         </a>
         <a
-          href={repoUrl}
+          href={repoUrl} target="_blank"
           className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm text-neutral-400
           hover:bg-neutral-50/10 transition ease-in-out duration-200"
         >
@@ -61,7 +61,7 @@ export const AppCard: FC<AppCardProps> = ({ appName, authorName, description, la
       </div>
       <div className="flex flex-row gap-2">
         <a
-          href={latestReleaseUrl}
+          href={latestReleaseUrl} target="_blank"
           className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm 
           hover:bg-green-600 transition ease-in-out duration-200 hoverDropShadow"
         >
@@ -69,7 +69,7 @@ export const AppCard: FC<AppCardProps> = ({ appName, authorName, description, la
           <Download size="20px" />
         </a>
         <a
-          href={repoUrl}
+          href={repoUrl} target="_blank"
           className="px-3 py-2 border border-neutral-800 w-full rounded-lg flex flex-row justify-between items-center text-sm text-neutral-400
           hover:bg-neutral-50/10 transition ease-in-out duration-200"
         >

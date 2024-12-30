@@ -6,11 +6,12 @@ import { JSX } from "react";
 interface NavLinkProps {
     href: string;
     label: string;
+    target?: string;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, label }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, label, target = "_self" }) => {
     return (
-        <a href={href} className="text-sm py-2 px-3 rounded-md trainsition ease-in-out duration-200 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-50/10">{label}</a>
+        <a href={href} target={target} className="text-sm py-2 px-3 rounded-md trainsition ease-in-out duration-200 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-50/10">{label}</a>
     );
 };
 
@@ -21,14 +22,14 @@ export default function Navbar(): JSX.Element {
         { href: "./about", label: "About" },
         { href: "./releases", label: "Releases" },
         { href: "./apps", label: "Apps" },
-        { href: "https://wiki.thinglabs.tech", label: "Wiki" },
+        { href: "https://wiki.thinglabs.tech", label: "Wiki", target: "_blank"},
         // { href: "./supporters", label: "Supporters"},
         
     ];
 
     const navList: JSX.Element[] = navItems.map((item, index) => (
         <li key={index}>
-            <NavLink href={item.href} label={item.label} />
+            <NavLink href={item.href} label={item.label} target={item.target}/>
         </li>
     ));
 
@@ -42,6 +43,7 @@ export default function Navbar(): JSX.Element {
             </div>
             <a
                 href="https://github.com/ItsRiprod/DeskThing"
+                target="_blank"
                 className="hidden sm:block transition ease-in-out duration-200 p-2 text-neutral-50 hover:text-green-400 hover:bg-neutral-50/10 rounded-md"
             >
                 <Github />

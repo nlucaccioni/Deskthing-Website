@@ -21,11 +21,12 @@ const VertLine: FC<VertLineProps> = () => {
 interface IconButtonProps {
     to: string;
     icon: JSX.Element;
+    target: string;
 }
 
-const IconButton: FC<IconButtonProps> = ({ to, icon }) => {
+const IconButton: FC<IconButtonProps> = ({ to, icon, target = "_self" }) => {
     return (
-        <a href={to}
+        <a href={to} target={target}
             className="block transition ease-in-out duration-200 p-2 text-neutral-50 hover:text-green-400 hover:bg-neutral-50/10 rounded-md">
             {icon}
         </a>
@@ -44,20 +45,21 @@ const Footer: FC = () => {
         twitter: "https://x.com/TheDeskThing",
     };
 
+
     return (
         <footer className="flex flex-col sm:flex-row justify-between gap-2 sm:items-center py-3 px-6 border-t border-neutral-800 bg-neutral-950">
             <p className="text-xs text-neutral-300">©2024 DeskThing Contributors</p>
             <div className="flex flex-row gap-2 flex-wrap w-full sm:w-auto">
-                <IconButton to={links.github} icon={<IconGithub />} />
-                <IconButton to={links.trello} icon={<IconTrello />} />
+                <IconButton to={links.github} icon={<IconGithub />} target="_blank"/>
+                <IconButton to={links.trello} icon={<IconTrello />} target="_blank"/>
                 <VertLine />
-                <IconButton to={links.discord} icon={<IconDiscord />} />
-                <IconButton to={links.reddit} icon={<IconReddit />} />
-                <IconButton to={links.youtube} icon={<IconYoutube />} />
-                <IconButton to={links.twitter} icon={<IconTwitter />} />
-                <IconButton to={links.bluesky} icon={<IconBluesky />} />
+                <IconButton to={links.discord} icon={<IconDiscord />} target="_blank"/>
+                <IconButton to={links.reddit} icon={<IconReddit />} target="_blank"/>
+                <IconButton to={links.youtube} icon={<IconYoutube />} target="_blank"/>
+                <IconButton to={links.twitter} icon={<IconTwitter />} target="_blank"/>
+                <IconButton to={links.bluesky} icon={<IconBluesky />} target="_blank"/>
                 <VertLine />
-                <IconButton to={links.coffee} icon={<IconCoffee />} />
+                <IconButton to={links.coffee} icon={<IconCoffee />} target="_blank"/>
             </div>
         </footer>
     );
