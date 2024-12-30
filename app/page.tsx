@@ -20,6 +20,7 @@ import {
   fetchTotalDownloadsFromRepos,
   fetchServerReleases,
 } from "../services";
+import { fetchDiscordMemberCount } from '../services/fetchDiscordMembers';
 
 const HomePage: FC = async () => {
   const btnLinks: { [key: string]: string } = {
@@ -48,6 +49,8 @@ const HomePage: FC = async () => {
       return { repo: repoName, totalDownloads }; 
     })
   );
+
+  const discordMembers: number = await fetchDiscordMemberCount();
 
   const releases: any[] = await fetchCommunityReleasesFromRepos();
   const { latestApps, latestReleaseUrl, repoUrl, releaseDate }: { latestApps: any[]; latestReleaseUrl: string; repoUrl: string; releaseDate: string } = await fetchOfficialAppsData();
@@ -166,7 +169,7 @@ const HomePage: FC = async () => {
               	
                 <CommunityStats stat={deskthingDownloads.toLocaleString()} label="Server Downloads"/>
                 <CommunityStats stat={deskthingAppsDownloads.toLocaleString()} label="App Downloads"/>
-                <CommunityStats stat="2,979" label="Discord Members"/>
+                <CommunityStats stat={discordMembers.toLocaleString()} label="Discord Members"/>
               </div>
             </section>
 
