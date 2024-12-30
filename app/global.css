@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mainContainer {
+    max-width: 1024px;
+    margin-top: 3.75rem;
+    margin-bottom: 6rem;
+}
+
+.wideContainer {
+    width: 1596px;
+    margin-top: 3.75rem;
+    margin-bottom: 6rem;
+}
+
+.characterLimit {
+    max-width: 75ch;
+}
+
+h1 {
+    font-family: "GeistMono", monospace;
+    font-size: 6rem;
+    line-height: 1;
+    font-weight: 800; 
+}
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+h2 {
+    font-family: "Geist", sans-serif;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-wrap: pretty;
+}
+
+h3 {
+    font-family: "GeistMono", monospace;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+h4 {
+    font-family: "Geist", sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+p {
+    font-weight: 300;
+    text-wrap: pretty;
+}
+
+.imgDropShadow {
+    filter: drop-shadow(0px 0px 160px rgba(22, 163, 74, .5));
+}
+
+.hoverDropShadow:hover {
+    filter: drop-shadow(0px 0px 15px rgba(22, 163, 74, 0.30));
+}
