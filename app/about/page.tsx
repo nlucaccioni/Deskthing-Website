@@ -48,10 +48,10 @@ export default function AboutPage() {
               its users have found ways to repurpose the CarThing to increase
               productivity.
             </p>
-            <div className="w-full bg-white rounded-2xl h-64 overflow-clip mt-4 border border-neutral-700">
+            <div className="w-full bg-white rounded-2xl h-64 md:h-[500px] overflow-clip mt-4 border border-neutral-700">
               <img
-                src="./imgs/DeskThing_Hero.png"
-                alt="DeskThing Logo"
+                src="./imgs/DeskThing_Promo.webp"
+                alt="Deskthing desktop app and on device screens."
                 className="object-cover w-full h-full"
               />
             </div>

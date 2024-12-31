@@ -1,5 +1,5 @@
 import LogoSVG from "../components/assets/Logo";
-import { Github } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import NavMobile from "./navMobile";
 import { JSX } from "react";
 
@@ -11,7 +11,13 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ href, label, target = "_self" }) => {
     return (
-        <a href={href} target={target} className="text-sm py-2 px-3 rounded-md trainsition ease-in-out duration-200 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-50/10">{label}</a>
+        <a href={href} target={target} className="text-sm py-2 px-3 rounded-md trainsition ease-in-out duration-200 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-50/10 flex items-center gap-1">
+          {label}
+          {target === "_blank" && (
+            <ExternalLink size={12} color={"#a3a3a3"} />
+          )}
+          
+        </a>
     );
 };
 

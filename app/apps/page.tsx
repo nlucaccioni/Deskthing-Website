@@ -39,6 +39,7 @@ export default async function AppPage(): Promise<JSX.Element> {
         <div className="wideContainer xl:px-6 flex flex-col mx-auto gap-columnGap items-center ">
           <section className="w-full flex flex-col gap-4">
             <h2>Official Apps</h2>
+            <p class="mb-3 -mt-3 text-neutral-400">Official apps can also be downloaded directly in the desktop app.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
               {latestApps.map((app: App, index: number) => (
                 <OfficialAppCard
