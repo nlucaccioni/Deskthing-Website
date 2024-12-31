@@ -23,6 +23,11 @@ const redirects: Record<string, RedirectInfo> = {
     title: "DeskThing Custom Protocol",
     description: "Attempting to open the Deskthing application.",
   },
+  support: {
+    destination: "https://buymeacoffee.com/riprod",
+    title: "Deskthing | Support",
+    description: "Support development of Deskthing.",
+  }
 };
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
