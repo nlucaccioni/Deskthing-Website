@@ -1,7 +1,7 @@
 'use client'
 import React, { FC, useRef, useState, useEffect } from 'react';
 import { Cross as Hamburger } from 'hamburger-react';
-import { Github } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import LogoSVG from './assets/Logo';
 import MiniArrowRight from './assets/icons/MiniArrow_Right';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -71,8 +71,13 @@ const NavMobile: FC<NavMobileProps> = ({ navItems }) => {
       variants={childVariants}
       transition={{ ease: 'easeInOut'}}
     >
-      <a href={item.href} className="flex flex-row w-full gap-4 items-center">
+      <a href={item.href} target={item.target} className="flex flex-row w-full gap-4 items-center">
         <p>{item.label}</p>
+        {item.target === "_blank" && (
+              <span className='-ml-2'>
+                <ExternalLink size={18} color={"#a3a3a3"} />
+              </span>
+          )}
         <MiniArrowRight size={18} />
       </a>
     </motion.li>
