@@ -3,6 +3,8 @@ import Sidebar from "../components/sidebar";
 import { BtnIcon, BtnArrow } from "../components/buttons";
 import CommunityStats from "../components/communityStats";
 import { OfficialAppCard, AppCard } from '../components/appCards';
+import { NewsCard } from '../components/newsCard';
+import { newsData } from '../stores/newsStore';
 import {
   IconCoffee,
   IconDiscord,
@@ -70,7 +72,8 @@ const HomePage: FC = async () => {
       <div className="min-h-svh flex flex-row justify-between pt-nav mx-6 xl:mx-0">
         <div className="lg:border-r border-neutral-800 w-full lg:pr-6 xl:px-6 2xl:px-0">
           <div className="mainContainer flex flex-col mx-auto gap-sectionGap">
-            
+
+            {/* HERO SECTION */}
             <section id="hero">
               <div className="flex flex-col-reverse gap-4 relative">
                 <div className="flex flex-col gap-4">
@@ -97,7 +100,8 @@ const HomePage: FC = async () => {
                   </div>
               </div>
             </section>
-
+            
+            {/* COMMUNITY SECTION */}
             <section
               id="connect"
               className=" flex flex-col lg:flex-row gap-sectionGap lg:gap-columnGap"
@@ -163,6 +167,7 @@ const HomePage: FC = async () => {
               </div>
             </section>
 
+            {/* COMMUNITY STATS SECTION */}
             <section id="stats">
               <h2>Community Stats</h2>
               <div className="flex flex-col md:flex-row gap-4 items-stretch">
@@ -173,6 +178,7 @@ const HomePage: FC = async () => {
               </div>
             </section>
 
+            {/* APPS SECTION */}
             <section id="apps" className="flex flex-col gap-4">
               <div>
                 <h2>DeskThing Apps</h2>
@@ -207,6 +213,19 @@ const HomePage: FC = async () => {
               <BtnArrow to="./apps" label="Explore more apps" />
             </section>
 
+            {/* IN THE NEWS SECTION */}
+            <section id="news" className="flex flex-col gap-4">
+              <h2>In the News</h2>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 w-full'>
+                {newsData
+                  .filter(item => item.featured)
+                  .map((item, index) => (
+                  <NewsCard key={index} source={item.source} sourceUrl={item.sourceUrl} title={item.title} description={item.description} imgUrl={item.imgUrl} imgCredit={item.imgCredit} />
+                ))}
+              </div>
+            </section>
+
+            {/* SUPPORT SECTION */}
             <section id="support">
               <div className="basis-1/2 flex flex-col gap-4">
                 <div>
