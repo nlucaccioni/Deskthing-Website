@@ -8,6 +8,7 @@ const repos: string[] = [
   "espeon/lyrthing",
   "nwo122383/sonos-webapp",
   "Jarsa132/deskthing-volctrl",
+  "ankziety/DeskThingDiscord",
   "TylStres/DeskThing-Timer",
 ];
 
