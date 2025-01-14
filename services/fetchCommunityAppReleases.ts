@@ -5,6 +5,7 @@ const repos: string[] = [
   "grahamplace/pomodoro-thing",
   "dakota-kallas/DeskThing-SportsHub",
   "dakota-kallas/DeskThing-MarketHub",
+  "ankziety/DeskThingDiscord",
   "espeon/lyrthing",
   "nwo122383/sonos-webapp",
   "Jarsa132/deskthing-volctrl",
