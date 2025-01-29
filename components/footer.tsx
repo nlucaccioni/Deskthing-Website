@@ -14,7 +14,7 @@ interface VertLineProps {}
 
 const VertLine: FC<VertLineProps> = () => {
     return (
-        <div style={{ width: "1.5px", height: "44px" }} className="bg-neutral-800"></div>
+        <div style={{ width: "1.5px", height: "44px" }} className="bg-neutral-800 hidden sm:block"></div>
     );
 }
 
