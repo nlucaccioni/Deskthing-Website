@@ -23,6 +23,11 @@ const redirects: Record<string, RedirectInfo> = {
     title: "DeskThing Custom Protocol",
     description: "Attempting to open the Deskthing application.",
   },
+  desktop: {
+    destination: "deskthing://",
+    title: "DeskThing Custom Protocol",
+    description: "Attempting to open the Deskthing application.",
+  },
   support: {
     destination: "https://buymeacoffee.com/riprod",
     title: "Deskthing | Support",
@@ -30,18 +35,26 @@ const redirects: Record<string, RedirectInfo> = {
   }
 };
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
+export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
   return Object.keys(redirects).map((key) => ({
-    slug: key,
+    slug: [key],
   }));
 }
 
 interface GenerateMetadataParams {
-  params: { slug: string };
+  params?: Promise<{ slug?: string[] }>;
 }
 
-export async function generateMetadata({ params }: GenerateMetadataParams): Promise<{ title: string; description: string }> {
-  const { slug } = params;
+export async function generateMetadata(props: GenerateMetadataParams): Promise<{ title: string; description: string }> {
+  const params = await props.params;
+  if (!params || !params.slug || params.slug.length === 0) {
+    return {
+      title: "Page Not Found",
+      description: "The requested page does not exist.",
+    };
+  }
+
+  const slug = params.slug[0];
 
   const redirectInfo = redirects[slug];
 
@@ -59,23 +72,32 @@ export async function generateMetadata({ params }: GenerateMetadataParams): Prom
 }
 
 interface RedirectPageProps {
-  params: { slug: string; query?: string };
+  params: Promise<{ slug: string[] }>;
 }
 
-export default async function RedirectPage({ params }: RedirectPageProps): Promise<JSX.Element> {
-  const { slug } = params;
+export default async function RedirectPage(props: RedirectPageProps): Promise<JSX.Element> {
+  const params = await props.params;
+  if (!params || !params.slug) {
+    redirect("/404");
+    return <></>;
+  }
+
+  const slugArray = params.slug;
+  const slug = slugArray[0];
 
   const redirectInfo = redirects[slug];
 
   if (!redirectInfo) {
     redirect("/404");
+    return <></>;
   }
 
   let { destination } = redirectInfo;
 
-  if (slug === "deskthing") {
-    const searchParams = new URLSearchParams(params.query || "");
-    destination += searchParams ? `?${searchParams.toString()}` : "";
+
+  if (slug === "deskthing" || slug === "desktop") {
+    const path = slugArray.slice(1).join("/");
+    destination += path ? `/${path}` : "";
   }
 
   redirect(destination);
@@ -84,10 +106,7 @@ export default async function RedirectPage({ params }: RedirectPageProps): Promi
     <div className="flex flex-col items-center justify-center h-screen text-neutral-50">
       <h1 className="text-4xl mb-4">Redirecting...</h1>
       <p>You are being redirected. If nothing happens, click below:</p>
-      <a
-        href={destination}
-        className="mt-4 text-green-400 hover:underline"
-      >
+      <a href={destination} className="mt-4 text-green-400 hover:underline">
         Go to {destination}
       </a>
     </div>
