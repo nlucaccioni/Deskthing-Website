@@ -41,7 +41,7 @@ export default function AboutSection() {
           >
             <div className="w-24 h-24 rounded-full mb-4 overflow-hidden ring-2 ring-blue-400/30 group-hover:ring-blue-400/70 transition-all duration-300">
               <img
-                src="https://media.licdn.com/dms/image/v2/D5635AQFqGyXyEYOQKw/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1735289270842?e=1743418800&v=beta&t=L3PakG-uRpdlWVeUycraneFBfNp5vhcFUlCXiBpaTb8"
+                src="https://media.licdn.com/dms/image/v2/D5603AQHn-FXQlEFJog/profile-displayphoto-shrink_200_200/B56ZXHo2uaHEAY-/0/1742811131162?e=1748476800&v=beta&t=rTDAv4L6p9DDzU6uCDEvsXiJbYyMC40Wn8k67T_TmZQ"
                 alt="Nathan Emerick"
                 className="w-full h-full object-cover brightness-90 contrast-95 group-hover:scale-105 transition-all duration-300"
               />

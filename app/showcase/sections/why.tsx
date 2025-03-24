@@ -13,7 +13,7 @@ import {
 export default function WhySection() {
   return (
     <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
-      <h2 className="text-3xl font-bold mb-6">Why should I use it?</h2>
+      <h2 className="text-3xl font-bold mb-6">Why should you use it?</h2>
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row gap-6 items-center">
           <div className="md:w-2/3">
