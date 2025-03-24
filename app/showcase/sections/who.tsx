@@ -4,7 +4,7 @@ import { User, Code, Users, ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <div className="p-8 bg-neutral-900 rounded-lg h-full">
+    <div className="p-2 md:p-8 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">About DeskThing</h2>
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row gap-6">
@@ -19,10 +19,10 @@ export default function AboutSection() {
             </p>
             <p>
               As a computer science student at Grand Canyon University, Nathan
-              developed DeskThing as part of his Capstone Project. His
-              vision went beyond simply creating another piece of software—he
-              wanted to address the growing problem of electronic waste while
-              providing a practical solution for enhancing productivity.
+              developed DeskThing as part of his Capstone Project. His vision
+              went beyond simply creating another piece of software—he wanted to
+              address the growing problem of electronic waste while providing a
+              practical solution for enhancing productivity.
             </p>
             <p>
               "I was frustrated seeing perfectly functional hardware being
@@ -46,7 +46,9 @@ export default function AboutSection() {
                 className="w-full h-full object-cover brightness-90 contrast-95 group-hover:scale-105 transition-all duration-300"
               />
             </div>
-            <h3 className="text-xl font-semibold group-hover:text-blue-400 transition-colors">Nathan Emerick</h3>
+            <h3 className="text-xl font-semibold group-hover:text-blue-400 transition-colors">
+              Nathan Emerick
+            </h3>
             <p className="text-sm text-center text-gray-400 mt-1 flex items-center gap-2">
               <Users size={16} className="text-blue-400" />
               Creator & Lead Developer
@@ -55,8 +57,12 @@ export default function AboutSection() {
               "Technology should be sustainable, accessible, and empower users
               to create their own solutions."
             </p>
+            <div className="flex items-center gap-2 mt-4 text-blue-400">
+              <span className="text-sm">Visit LinkedIn Profile</span>
+            </div>
             <ArrowRight className="absolute bottom-2 right-2 w-5 h-5 opacity-0 group-hover:opacity-100 text-blue-400 transition-all duration-300" />
-          </a>        </div>
+          </a>
+        </div>
 
         <div className="bg-neutral-800 p-5 rounded-lg">
           <h3 className="text-xl font-semibold mb-3">The Journey</h3>
@@ -68,12 +74,12 @@ export default function AboutSection() {
             become useless.
           </p>
           <p>
-            After working with the ThingLabs team to setup the initial hack, he set to work creating the initial prototype
-            that could run custom software on the Car Thing. What started as a
-            personal hack quickly gained attention when he shared his progress
-            online. Other Car Thing owners, facing the same obsolescence
-            problem, began reaching out with questions, suggestions, and offers
-            to help.
+            After working with the ThingLabs team to setup the initial hack, he
+            set to work creating the initial prototype that could run custom
+            software on the Car Thing. What started as a personal hack quickly
+            gained attention when he shared his progress online. Other Car Thing
+            owners, facing the same obsolescence problem, began reaching out
+            with questions, suggestions, and offers to help.
           </p>
           <p className="mt-3">
             "The response was overwhelming," Nathan recalls. "I realized this

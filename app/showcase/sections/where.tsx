@@ -215,7 +215,7 @@ export default function WhereSection() {
   ];
 
   return (
-    <div className="p-8 bg-neutral-900 rounded-lg h-full">
+    <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">Where is it going?</h2>
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row gap-6 items-center">

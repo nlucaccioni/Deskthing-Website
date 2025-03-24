@@ -29,7 +29,7 @@ const navItems: NavItem[] = [
   { title: "WHAT", subtitle: "is DeskThing?", id: "apps" },
   { title: "WHEN", subtitle: "did it all start?", id: "releases" },
   { title: "WHERE", subtitle: "is it going?", id: "roadmap" },
-  { title: "WHY", subtitle: "should i use it?", id: "why" },
+  { title: "WHY", subtitle: "should you use it?", id: "why" },
   { title: "HOW", subtitle: "does it work?", id: "how" },
 ];
 
@@ -114,8 +114,8 @@ export default function ShowcasePage() {
       {/* Left sidebar - fixed navigation */}
       <aside
         className={`${
-          visibleNavbar ? "h-[70vh] py-8" : "h-0 overflow-hidden py-0"
-        } md:py-8 px-6 z-10 md:mb-nav fixed border-b-4 border-neutral-900 md:border-none bg-neutral-950 w-screen transition-[height;padding] duration-300 ease-in-out md:fixed top-nav md:bottom-nav md:left-0 md:w-1/3 md:max-w-md md:h-auto overflow-y-auto flex items-center`}
+          visibleNavbar ? "h-[calc(100vh-6rem)] py-8" : "h-0 overflow-hidden py-0"
+        } lg:py-8 px-6 z-10 md:mb-nav fixed border-b-4 border-neutral-900 lg:border-none bg-neutral-950 w-screen transition-[height;padding] duration-300 ease-in-out lg:fixed top-nav md:bottom-nav md:left-0 lg:w-1/3 lg:max-w-md lg:h-[calc(100vh-12.5rem)] overflow-y-auto flex items-center`}
       >
         <nav className="w-full md:w-auto h-full">
           <ul className="flex flex-col gap-6 md:gap-8">
@@ -153,7 +153,7 @@ export default function ShowcasePage() {
       </aside>
       <button
         onClick={handleCollapseClick}
-        className="md:hidden bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full z-20"
+        className="lg:hidden border-2 border-neutral-600 bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full z-20 transition-all duration-300 border-transparent hover:border-2 hover:border-green-500 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
       >
         <ArrowDown
           className={`${
@@ -164,12 +164,12 @@ export default function ShowcasePage() {
 
       {/* Right content area - independently scrollable */}
       <div
-        className="w-full md:w-2/3 md:ml-[33.333%] h-[calc(100vh-6rem)] overflow-hidden flex-grow"
+        className="w-full lg:w-2/3 lg:ml-[33.333%] h-[calc(100vh-6rem)] overflow-hidden flex-grow"
         aria-live="polite"
       >
         <div
           ref={contentRef}
-          className="h-full overflow-y-auto px-6 md:px-12 py-8 md:py-12"
+          className="h-full overflow-y-auto md:px-6 md:px-12 py-8 md:py-12"
         >
           <div
             className={`min-h-[50vh] ${

@@ -153,7 +153,7 @@ export default function WhenSection() {
   ];
 
   return (
-    <div className="p-8 bg-neutral-900 rounded-lg h-full">
+    <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
         <Calendar className="w-8 h-8" />
         When did it all start?
