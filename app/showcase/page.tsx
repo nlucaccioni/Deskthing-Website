@@ -92,7 +92,7 @@ export default function ShowcasePage() {
     if (activeSection === itemId) return;
     setVisibleNavbar(false);
     setIsTransitioning(true);
-    
+
     // Clear any existing timeout
     if (transitionTimeoutRef.current) {
       clearTimeout(transitionTimeoutRef.current);
@@ -103,11 +103,11 @@ export default function ShowcasePage() {
       setActiveSection(itemId);
       setIsTransitioning(false);
     }, 300);
-  }
+  };
 
   const handleCollapseClick = () => {
     setVisibleNavbar((prev) => !prev);
-  }
+  };
 
   return (
     <div className="h-svh flex flex-col md:flex-row pt-nav">
@@ -149,18 +149,18 @@ export default function ShowcasePage() {
               </li>
             ))}
           </ul>
-          <button
-            onClick={handleCollapseClick}
-            className="md:hidden bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full"
-          >
-            <ArrowDown
-              className={`${
-                visibleNavbar ? "rotate-180" : ""
-              } transition-transform duration-300 ease-in-out`}
-            />
-          </button>
         </nav>
       </aside>
+      <button
+        onClick={handleCollapseClick}
+        className="md:hidden bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full z-20"
+      >
+        <ArrowDown
+          className={`${
+            visibleNavbar ? "rotate-180" : ""
+          } transition-transform duration-300 ease-in-out`}
+        />
+      </button>
 
       {/* Right content area - independently scrollable */}
       <div
@@ -171,7 +171,11 @@ export default function ShowcasePage() {
           ref={contentRef}
           className="h-full overflow-y-auto px-6 md:px-12 py-8 md:py-12"
         >
-          <div className={`min-h-[50vh] ${isTransitioning ? 'animate-fadeOut' : 'animate-fadeIn'} duration-300`}>
+          <div
+            className={`min-h-[50vh] ${
+              isTransitioning ? "animate-fadeOut" : "animate-fadeIn"
+            } duration-300`}
+          >
             {renderSection()}
           </div>
         </div>
